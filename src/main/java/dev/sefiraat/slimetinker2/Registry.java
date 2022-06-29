@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Registry {
 
-    public final Map<String, TinkerMaterial> materialMap = new HashMap<>();
+    private final Map<String, TinkerMaterial> materialMap = new HashMap<>();
 
     public void registerMaterial(@Nonnull TinkerMaterial tinkerMaterial) {
         materialMap.put(tinkerMaterial.getId(), tinkerMaterial);
@@ -20,4 +20,7 @@ public class Registry {
         return materialMap.get(id);
     }
 
+    public Map<String, TinkerMaterial> getMaterials() {
+        return materialMap;
+    }
 }

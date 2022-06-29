@@ -78,7 +78,7 @@ public class ConfigManager {
     }
 
     public void saveAll() {
-        SlimeTinker2.getInstance().getLogger().info("Nexus saving data.");
+        SlimeTinker2.getInstance().getLogger().info("SlimeTinker2 saving data.");
     }
 
     public boolean isAutoUpdate() {

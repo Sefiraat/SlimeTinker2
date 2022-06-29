@@ -18,11 +18,13 @@ public class TickEventFriend extends EventFriend<TinkerTickEvent> {
     }
 
     public void increasePotionEffect(@Nonnull PotionEffectType potionEffectType) {
-        increasePotionEffect(potionEffectType, 1);
+        final Integer currentValue = potionEffects.get(potionEffectType);
+        potionEffects.put(potionEffectType, currentValue == null ? 0 : currentValue + 1);
     }
 
     public void increasePotionEffect(@Nonnull PotionEffectType potionEffectType, int amount) {
-        potionEffects.merge(potionEffectType, amount, Integer::sum);
+        final int currentValue = potionEffects.getOrDefault(potionEffectType, 0);
+        potionEffects.put(potionEffectType, currentValue + amount);
     }
 
     @Nonnull

@@ -2,6 +2,7 @@ package dev.sefiraat.slimetinker2.utils.datatypes;
 
 import dev.sefiraat.slimetinker2.api.TinkerMaterial;
 import dev.sefiraat.slimetinker2.api.TinkerTool;
+import dev.sefiraat.slimetinker2.api.enums.ToolType;
 import dev.sefiraat.slimetinker2.utils.Keys;
 import org.bukkit.NamespacedKey;
 import org.bukkit.persistence.PersistentDataAdapterContext;
@@ -19,6 +20,7 @@ public class TinkerToolDataType implements PersistentDataType<PersistentDataCont
     public static final NamespacedKey TOOL_LEVEL = Keys.newKey("level");
     public static final NamespacedKey TOOL_EXP = Keys.newKey("exp");
     public static final NamespacedKey TOOL_MOD_SLOTS = Keys.newKey("slots");
+    public static final NamespacedKey TOOL_TYPE = Keys.newKey("type");
 
     @Override
     @Nonnull
@@ -43,6 +45,7 @@ public class TinkerToolDataType implements PersistentDataType<PersistentDataCont
         container.set(TOOL_LEVEL, INTEGER, complex.getToolLevel());
         container.set(TOOL_EXP, INTEGER, complex.getToolExp());
         container.set(TOOL_MOD_SLOTS, INTEGER, complex.getFreeModSlots());
+        container.set(TOOL_TYPE, STRING, complex.getToolType().toString());
         return container;
     }
 
@@ -53,11 +56,12 @@ public class TinkerToolDataType implements PersistentDataType<PersistentDataCont
         final int toolLevel = primitive.get(TOOL_LEVEL, INTEGER);
         final int toolExp = primitive.get(TOOL_EXP, INTEGER);
         final int toolModSlots = primitive.get(TOOL_MOD_SLOTS, INTEGER);
+        final ToolType toolType = ToolType.valueOf(primitive.get(TOOL_TYPE, STRING));
         final TinkerMaterial materialHead = TinkerMaterial.getById(primitive.get(MATERIAL_ID_HEAD, STRING));
         final TinkerMaterial materialBinder = TinkerMaterial.getById(primitive.get(MATERIAL_ID_BINDER, STRING));
         final TinkerMaterial materialRod = TinkerMaterial.getById(primitive.get(MATERIAL_ID_ROD, STRING));
 
-        return new TinkerTool(toolLevel, toolExp, toolModSlots, materialHead, materialBinder, materialRod);
+        return new TinkerTool(toolLevel, toolExp, toolModSlots, toolType, materialHead, materialBinder, materialRod);
     }
 
 }

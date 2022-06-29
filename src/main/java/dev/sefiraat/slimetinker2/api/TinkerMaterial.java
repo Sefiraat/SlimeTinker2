@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 
 public class TinkerMaterial {
@@ -31,6 +32,7 @@ public class TinkerMaterial {
     private ItemStack formLeggings;
     private ItemStack formChestplate;
     private ItemStack formHelmet;
+    private ItemStack craftingStack;
 
     private boolean registered;
 
@@ -216,6 +218,14 @@ public class TinkerMaterial {
         this.formHelmet = formHelmet;
     }
 
+    public ItemStack getCraftingStack() {
+        return craftingStack;
+    }
+
+    public void setCraftingStack(ItemStack craftingStack) {
+        this.craftingStack = craftingStack;
+    }
+
     public void setRegistered(boolean registered) {
         this.registered = registered;
     }
@@ -232,7 +242,7 @@ public class TinkerMaterial {
     public static final class Builder {
         private String id;
         private Theme theme;
-        private Map<PartType, TinkerTrait> traitMap;
+        private Map<PartType, TinkerTrait> traitMap = new HashMap<>();
         private TinkerExtension addedBy;
         private String sponsor = null;
         private AlloyTexture alloyTexture;
@@ -247,6 +257,7 @@ public class TinkerMaterial {
         private ItemStack formLeggings;
         private ItemStack formChestplate;
         private ItemStack formHelmet;
+        private ItemStack craftingStack;
         private boolean registered;
 
         @Nonnull
@@ -358,6 +369,12 @@ public class TinkerMaterial {
         }
 
         @Nonnull
+        public Builder withCraftingStack(@Nonnull ItemStack craftingStack) {
+            this.craftingStack = craftingStack;
+            return this;
+        }
+
+        @Nonnull
         public Builder withRegistered(boolean registered) {
             this.registered = registered;
             return this;
@@ -381,6 +398,7 @@ public class TinkerMaterial {
                 .withFormLeggings(formLeggings)
                 .withFormChestplate(formChestplate)
                 .withFormHelmet(formHelmet)
+                .withCraftingStack(craftingStack)
                 .withRegistered(registered)
                 .start();
         }
@@ -404,6 +422,7 @@ public class TinkerMaterial {
             tinkerMaterial.setFormLeggings(formLeggings);
             tinkerMaterial.setFormChestplate(formChestplate);
             tinkerMaterial.setFormHelmet(formHelmet);
+            tinkerMaterial.setCraftingStack(craftingStack);
             tinkerMaterial.setRegistered(registered);
             return tinkerMaterial;
         }

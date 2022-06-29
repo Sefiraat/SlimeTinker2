@@ -6,6 +6,7 @@ import dev.sefiraat.slimetinker2.implementation.managers.DispatchManager;
 import dev.sefiraat.slimetinker2.implementation.managers.ListenerManager;
 import dev.sefiraat.slimetinker2.implementation.managers.SupportedPluginManager;
 import dev.sefiraat.slimetinker2.implementation.managers.TaskManager;
+import dev.sefiraat.slimetinker2.implementation.tinkers.Materials;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import org.bstats.bukkit.Metrics;
@@ -40,7 +41,7 @@ public class SlimeTinker2 extends JavaPlugin implements SlimefunAddon {
 
     public SlimeTinker2() {
         this.username = "Sefiraat";
-        this.repo = "Nexus";
+        this.repo = "SlimeTinker2";
         this.branch = "master";
     }
 
@@ -49,7 +50,7 @@ public class SlimeTinker2 extends JavaPlugin implements SlimefunAddon {
         instance = this;
 
         getLogger().info("########################################");
-        getLogger().info("                  Nexus                 ");
+        getLogger().info("              SlimeTinker2              ");
         getLogger().info("########################################");
 
         saveDefaultConfig();
@@ -59,8 +60,11 @@ public class SlimeTinker2 extends JavaPlugin implements SlimefunAddon {
         this.supportedPluginManager = new SupportedPluginManager();
         this.listenerManager = new ListenerManager();
         this.taskManager = new TaskManager();
-        this.dispatchManager = new DispatchManager(this);
         this.registry = new Registry();
+
+        Materials.init();
+
+        this.dispatchManager = new DispatchManager(this);
 
         setupStats();
     }

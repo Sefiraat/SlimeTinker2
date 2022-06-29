@@ -9,7 +9,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class TinkerTick extends BukkitRunnable {
 
-    public static final int TICK_OVERLAP = 40;
+    public static final int TICK_DURATION = 80;
+    public static final int TICK_OVERLAP = 120;
 
     @Override
     public void run() {

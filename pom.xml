@@ -19,19 +19,19 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>dev.sefiraat.nexus.bstats</shadedPattern>
+                            <shadedPattern>dev.sefiraat.slimetinker2.bstats</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>io.github.bakedlibs.dough</pattern>
-                            <shadedPattern>dev.sefiraat.nexus.dough</shadedPattern>
+                            <shadedPattern>dev.sefiraat.slimetinker2.dough</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>io.papermc.lib</pattern>
-                            <shadedPattern>dev.sefiraat.nexus.paperlib</shadedPattern>
+                            <shadedPattern>dev.sefiraat.slimetinker2.paperlib</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>io.github.sefiraat.sefilib</pattern>
-                            <shadedPattern>io.github.sefiraat.nexus.sefilib</shadedPattern>
+                            <shadedPattern>io.github.sefiraat.slimetinker2.sefilib</shadedPattern>
                         </relocation>
                     </relocations>
                     <filters>

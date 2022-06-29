@@ -120,4 +120,18 @@ public final class Traits {
 
     // endregion
 
+    // region String
+
+    public static final TinkerTrait STRING_TOOL_BINDER = TinkerTrait.Builder.start()
+        .withTraitName("It Just Works")
+        .withLore("No special effects.")
+        .build();
+
+    public static final TinkerTrait STRING_ARMOR_GAMBESON = TinkerTrait.Builder.start()
+        .withTraitName("It Just Works")
+        .withLore("No special effects.")
+        .build();
+
+    // endregion
+
 }

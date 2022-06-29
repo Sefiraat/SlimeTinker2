@@ -58,7 +58,19 @@ public final class Materials {
         .build()
         .register();
 
+    public static final TinkerMaterial STRING = TinkerMaterial.Builder.start()
+        .withId("CORE_STRING")
+        .fromTinkerExtension(SlimeTinker2.getExtension())
+        .withTheme(new Theme(ChatColor.of("#f5f5f5"), "String"))
+        .withCraftingStack(new ItemStack(Material.STRING))
+        .withTrait(PartType.TOOL_BINDER, Traits.STRING_TOOL_BINDER)
+        .withTrait(PartType.ARMOR_GAMBESON, Traits.STRING_ARMOR_GAMBESON)
+        .build()
+        .register();
 
 
+    public static void init() {
+
+    }
 
 }

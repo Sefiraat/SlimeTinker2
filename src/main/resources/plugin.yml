@@ -1,0 +1,13 @@
+name: slimetinker2
+author: Sefiraat
+description:
+main: dev.sefiraat.slimetinker2.SlimeTinker2
+website: https://github.com/Sefiraat/SlimeTinker2
+version: ${project.version}
+api-version: 1.19
+depend:
+  - Slimefun
+commands:
+  slimetinker2:
+    description: /slimetinker2
+    usage: /slimetinker2 <sub>

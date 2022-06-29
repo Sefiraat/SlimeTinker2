@@ -8,6 +8,7 @@ import dev.sefiraat.slimetinker2.api.friends.EntityDamagedByPlayerEventFriend;
 import dev.sefiraat.slimetinker2.api.friends.PlayerDamagedEventFriend;
 import dev.sefiraat.slimetinker2.api.friends.RightClickEventFriend;
 import dev.sefiraat.slimetinker2.api.friends.TickEventFriend;
+import dev.sefiraat.slimetinker2.implementation.tasks.TinkerTick;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,6 +19,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
+import org.bukkit.potion.PotionEffect;
 
 import javax.annotation.Nonnull;
 
@@ -68,5 +70,10 @@ public class ToolHandlersListener implements Listener {
     public void onTinkerTick(@Nonnull TinkerTickEvent event) {
         final TickEventFriend friend = new TickEventFriend(event, event.getTinkerPlayer());
         event.getTinkerPlayer().processEvent(friend);
+
+        friend.getPotionEffects().forEach((potionEffectType, integer) -> {
+            final PotionEffect potionEffect = new PotionEffect(potionEffectType, TinkerTick.TICK_OVERLAP, integer);
+            event.getTinkerPlayer().getPlayer().addPotionEffect(potionEffect);
+        });
     }
 }

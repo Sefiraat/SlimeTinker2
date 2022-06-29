@@ -11,13 +11,12 @@ public class TaskManager {
 
     private static TaskManager instance;
 
-
     public TaskManager() {
         Preconditions.checkArgument(instance == null, "Cannot create a new instance of the TaskManager");
         instance = this;
         final SlimeTinker2 plugin = SlimeTinker2.getInstance();
 
-        new TinkerTick().runTaskTimer(plugin, 0, 40);
+        new TinkerTick().runTaskTimer(plugin, 0, TinkerTick.TICK_DURATION);
     }
 
     public static TaskManager getInstance() {
