@@ -1,6 +1,5 @@
 package dev.sefiraat.slimetinker2.implementation.tinkers;
 
-import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.api.TinkerTrait;
 import dev.sefiraat.slimetinker2.utils.Keys;
 import io.github.sefiraat.sefilib.misc.Chance;
@@ -25,13 +24,11 @@ public final class Traits {
 
     public static final TinkerTrait IRON_TOOL_HEAD = TinkerTrait.Builder.start()
         .withTraitName("Stability")
-        .withAddedBy(SlimeTinker2.getExtension())
         .withLore("Does... hmm.. Nothing...")
         .build();
 
     public static final TinkerTrait IRON_TOOL_ROD = TinkerTrait.Builder.start()
         .withTraitName("Sharp I")
-        .withAddedBy(SlimeTinker2.getExtension())
         .withLore(
             "Gives increased damage, stacks with",
             "mods and other properties."
@@ -41,7 +38,6 @@ public final class Traits {
 
     public static final TinkerTrait IRON_ARMOR_PLATES = TinkerTrait.Builder.start()
         .withTraitName("Steadfast")
-        .withAddedBy(SlimeTinker2.getExtension())
         .withLore(
             "33% chance to ignore an explosion"
         )
@@ -58,7 +54,6 @@ public final class Traits {
 
     public static final TinkerTrait IRON_ARMOR_LINKS = TinkerTrait.Builder.start()
         .withTraitName("Rusty")
-        .withAddedBy(SlimeTinker2.getExtension())
         .withLore(
             "Armour durability loss +10%. Player Exp gain +10%"
         )
@@ -70,9 +65,10 @@ public final class Traits {
 
     // endregion
 
+    // region Gold
+
     public static final TinkerTrait GOLD_TOOL_HEAD = TinkerTrait.Builder.start()
         .withTraitName("Golden Veil")
-        .withAddedBy(SlimeTinker2.getExtension())
         .withLore(
             "Makes the player invisible. If used on",
             "a weapon, -100% damage."
@@ -83,7 +79,6 @@ public final class Traits {
 
     public static final TinkerTrait GOLD_TOOL_ROD = TinkerTrait.Builder.start()
         .withTraitName("All that Glitters")
-        .withAddedBy(SlimeTinker2.getExtension())
         .withLore(
             "Makes you all shiny..."
         )
@@ -92,7 +87,6 @@ public final class Traits {
 
     public static final TinkerTrait GOLD_ARMOR_PLATES = TinkerTrait.Builder.start()
         .withTraitName("Prosperous")
-        .withAddedBy(SlimeTinker2.getExtension())
         .withLore(
             "1% chance to drop a gold nugget when hit"
         )
@@ -106,7 +100,6 @@ public final class Traits {
 
     public static final TinkerTrait GOLD_ARMOR_LINKS = TinkerTrait.Builder.start()
         .withTraitName("Barter")
-        .withAddedBy(SlimeTinker2.getExtension())
         .withLore(
             "Piglins like your armour"
         )
@@ -125,5 +118,6 @@ public final class Traits {
         })
         .build();
 
+    // endregion
 
 }

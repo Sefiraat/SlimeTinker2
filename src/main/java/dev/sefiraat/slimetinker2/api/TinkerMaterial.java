@@ -15,7 +15,8 @@ public class TinkerMaterial {
     private String id;
     private Theme theme;
     private Map<PartType, TinkerTrait> traitMap;
-
+    private TinkerExtension addedBy;
+    private String sponsor = null;
     private AlloyTexture alloyTexture;
     private String[] alloyRecipe = new String[0];
 
@@ -44,7 +45,7 @@ public class TinkerMaterial {
         return this;
     }
 
-    public void processEvent(@Nonnull PartType partType, @Nonnull EventFriend eventFriend) {
+    public void processEvent(@Nonnull PartType partType, @Nonnull EventFriend<?> eventFriend) {
         final TinkerTrait tinkerTrait = traitMap.get(partType);
         if (tinkerTrait != null) {
             tinkerTrait.run(eventFriend);
@@ -84,6 +85,29 @@ public class TinkerMaterial {
     public TinkerMaterial addTrait(@Nonnull PartType partType, @Nonnull TinkerTrait trait) {
         this.traitMap.put(partType, trait);
         return this;
+    }
+
+    @Nonnull
+    public TinkerExtension getAddedBy() {
+        return this.addedBy;
+    }
+
+    @Nonnull
+    public String getAddedByName() {
+        return this.addedBy.getExtensionName();
+    }
+
+    public void setAddedBy(@Nonnull TinkerExtension addedBy) {
+        this.addedBy = addedBy;
+    }
+
+    @Nullable
+    public String getSponsor() {
+        return sponsor;
+    }
+
+    public void setSponsor(String sponsor) {
+        this.sponsor = sponsor;
     }
 
     public AlloyTexture getAlloyTexture() {
@@ -200,10 +224,17 @@ public class TinkerMaterial {
         return this.registered;
     }
 
+    @Nullable
+    public static TinkerMaterial getById(@Nonnull String id) {
+        return SlimeTinker2.getRegistry().getTinkerMaterial(id);
+    }
+
     public static final class Builder {
         private String id;
         private Theme theme;
         private Map<PartType, TinkerTrait> traitMap;
+        private TinkerExtension addedBy;
+        private String sponsor = null;
         private AlloyTexture alloyTexture;
         private String[] alloyRecipe = new String[0];
         private ItemStack formNugget;
@@ -233,6 +264,18 @@ public class TinkerMaterial {
         @Nonnull
         public Builder withTraitMap(@Nonnull Map<PartType, TinkerTrait> traitMap) {
             this.traitMap = traitMap;
+            return this;
+        }
+
+        @Nonnull
+        public Builder fromTinkerExtension(@Nonnull TinkerExtension tinkerExtension) {
+            this.addedBy = tinkerExtension;
+            return this;
+        }
+
+        @Nonnull
+        public Builder sponsoredBy(@Nonnull String sponsor) {
+            this.sponsor = sponsor;
             return this;
         }
 
@@ -323,21 +366,23 @@ public class TinkerMaterial {
         @Nonnull
         public Builder but() {
             return withId(id).withTheme(theme)
-                             .withTraitMap(traitMap)
-                             .withAlloyTexture(alloyTexture)
-                             .withAlloyRecipe(alloyRecipe)
-                             .withFormNugget(formNugget)
-                             .withFormIngot(formIngot)
-                             .withFormBlock(formBlock)
-                             .withFormOre(formOre)
-                             .withFormGem(formGem)
-                             .withFormDust(formDust)
-                             .withFormBoots(formBoots)
-                             .withFormLeggings(formLeggings)
-                             .withFormChestplate(formChestplate)
-                             .withFormHelmet(formHelmet)
-                             .withRegistered(registered)
-                             .start();
+                .withTraitMap(traitMap)
+                .fromTinkerExtension(addedBy)
+                .sponsoredBy(sponsor)
+                .withAlloyTexture(alloyTexture)
+                .withAlloyRecipe(alloyRecipe)
+                .withFormNugget(formNugget)
+                .withFormIngot(formIngot)
+                .withFormBlock(formBlock)
+                .withFormOre(formOre)
+                .withFormGem(formGem)
+                .withFormDust(formDust)
+                .withFormBoots(formBoots)
+                .withFormLeggings(formLeggings)
+                .withFormChestplate(formChestplate)
+                .withFormHelmet(formHelmet)
+                .withRegistered(registered)
+                .start();
         }
 
         @Nonnull
@@ -345,6 +390,8 @@ public class TinkerMaterial {
             TinkerMaterial tinkerMaterial = new TinkerMaterial(id);
             tinkerMaterial.setTheme(theme);
             tinkerMaterial.setTraitMap(traitMap);
+            tinkerMaterial.setAddedBy(addedBy);
+            tinkerMaterial.setSponsor(sponsor);
             tinkerMaterial.setAlloyTexture(alloyTexture);
             tinkerMaterial.setAlloyRecipe(alloyRecipe);
             tinkerMaterial.setFormNugget(formNugget);

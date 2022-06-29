@@ -16,8 +16,6 @@ import java.util.function.Consumer;
 public class TinkerTrait {
     private String traitName = "";
     private String[] lore = new String[0];
-    private TinkerExtension addedBy;
-    private String sponsor = null;
     private CustomItemStack displayStack;
 
     private Consumer<BlockBreakEventFriend> blockBreakEvent;
@@ -45,20 +43,6 @@ public class TinkerTrait {
         this.lore = lore;
     }
 
-    @Nonnull
-    public TinkerExtension getAddedBy() {
-        return this.addedBy;
-    }
-
-    @Nonnull
-    public String getAddedByName() {
-        return this.addedBy.getExtensionName();
-    }
-
-    public void setAddedBy(@Nonnull TinkerExtension addedBy) {
-        this.addedBy = addedBy;
-    }
-
     @Nullable
     public Consumer<BlockBreakEventFriend> getBlockBreakEvent() {
         return blockBreakEvent;
@@ -75,15 +59,6 @@ public class TinkerTrait {
 
     public void setTickEvent(@Nonnull Consumer<TickEventFriend> tickEvent) {
         this.tickEvent = tickEvent;
-    }
-
-    @Nullable
-    public String getSponsor() {
-        return sponsor;
-    }
-
-    public void setSponsor(String sponsor) {
-        this.sponsor = sponsor;
     }
 
     @Nonnull
@@ -110,8 +85,6 @@ public class TinkerTrait {
     public static final class Builder {
         private String traitName = "";
         private String[] lore = new String[0];
-        private TinkerExtension addedBy;
-        private String sponsor = null;
         private CustomItemStack displayStack;
         private Consumer<BlockBreakEventFriend> blockBreakEvent;
         private Consumer<DurabilityLossEventFriend> durabilityLossEvent;
@@ -130,16 +103,6 @@ public class TinkerTrait {
 
         public Builder withLore(String... lore) {
             this.lore = lore;
-            return this;
-        }
-
-        public Builder withAddedBy(TinkerExtension addedBy) {
-            this.addedBy = addedBy;
-            return this;
-        }
-
-        public Builder withSponsor(String sponsor) {
-            this.sponsor = sponsor;
             return this;
         }
 
@@ -180,8 +143,6 @@ public class TinkerTrait {
 
         public Builder but() {
             return withTraitName(traitName).withLore(lore)
-                .withAddedBy(addedBy)
-                .withSponsor(sponsor)
                 .withDisplayStack(displayStack)
                 .withBlockBreakEvent(blockBreakEvent)
                 .withDurabilityLossEvent(durabilityLossEvent)
@@ -196,8 +157,6 @@ public class TinkerTrait {
             TinkerTrait tinkerTrait = new TinkerTrait();
             tinkerTrait.setTraitName(traitName);
             tinkerTrait.setLore(lore);
-            tinkerTrait.setAddedBy(addedBy);
-            tinkerTrait.setSponsor(sponsor);
             tinkerTrait.setDisplayStack(displayStack);
             tinkerTrait.setBlockBreakEvent(blockBreakEvent);
             tinkerTrait.setTickEvent(tickEvent);

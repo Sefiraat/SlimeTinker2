@@ -7,12 +7,14 @@ import javax.annotation.Nonnull;
 
 public final class Keys {
 
-    // Trait Keys
-    public static final NamespacedKey HAPPY_PIGLIN = newKey("happy-piglin");
-
     private Keys() {
         throw new IllegalStateException("Utility class");
     }
+
+    // Trait Keys
+    public static final NamespacedKey HAPPY_PIGLIN = newKey("happy-piglin");
+    public static final NamespacedKey TINKER_TOOL = newKey("tinker-tool");
+    public static final NamespacedKey TINKER_ARMOR = newKey("tinker-armor");
 
     @Nonnull
     public static NamespacedKey newKey(@Nonnull String value) {

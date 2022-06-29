@@ -1,5 +1,6 @@
 package dev.sefiraat.slimetinker2.implementation.tinkers;
 
+import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.api.TinkerMaterial;
 import dev.sefiraat.slimetinker2.api.enums.PartType;
 import dev.sefiraat.slimetinker2.api.textures.AlloyTexture;
@@ -17,6 +18,7 @@ public final class Materials {
 
     public static final TinkerMaterial IRON = TinkerMaterial.Builder.start()
         .withId("CORE_IRON")
+        .fromTinkerExtension(SlimeTinker2.getExtension())
         .withTheme(new Theme(ChatColor.of("#8c8c8c"), "Iron"))
         .withAlloyTexture(AlloyTexture.ALLOY_SILVER)
         .withFormNugget(new ItemStack(Material.IRON_NUGGET))
@@ -37,6 +39,7 @@ public final class Materials {
 
     public static final TinkerMaterial GOLD = TinkerMaterial.Builder.start()
         .withId("CORE_GOLD")
+        .fromTinkerExtension(SlimeTinker2.getExtension())
         .withTheme(new Theme(ChatColor.of("#ffe138"), "Gold"))
         .withAlloyTexture(AlloyTexture.ALLOY_SILVER)
         .withFormNugget(new ItemStack(Material.GOLD_NUGGET))

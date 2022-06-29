@@ -1,17 +1,16 @@
 package dev.sefiraat.slimetinker2.api;
 
 import dev.sefiraat.slimetinker2.api.enums.PartType;
-import dev.sefiraat.slimetinker2.api.enums.TinkerEventType;
 import dev.sefiraat.slimetinker2.api.friends.EventFriend;
-import org.bukkit.event.Event;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class TinkerArmor {
 
-    private int toolLevel;
-    private int toolExp;
+    private int armorLevel;
+    private int armorExp;
+    private int freeModSlots;
     @Nonnull
     private TinkerMaterial materialPlates;
     @Nonnull
@@ -20,33 +19,49 @@ public class TinkerArmor {
     private TinkerMaterial materialLinks;
 
     @ParametersAreNonnullByDefault
-    public TinkerArmor(int toolLevel, TinkerMaterial head, TinkerMaterial binder, TinkerMaterial rod) {
-        this.toolLevel = toolLevel;
-        this.materialPlates = head;
-        this.materialGambeson = binder;
-        this.materialLinks = rod;
+    public TinkerArmor(int armorLevel,
+                       int armorExp,
+                       int slots,
+                       TinkerMaterial plates,
+                       TinkerMaterial gambeson,
+                       TinkerMaterial links
+    ) {
+        this.armorLevel = armorLevel;
+        this.armorExp = armorExp;
+        this.freeModSlots = slots;
+        this.materialPlates = plates;
+        this.materialGambeson = gambeson;
+        this.materialLinks = links;
     }
 
-    public void processEvent(@Nonnull EventFriend eventFriend) {
-        this.materialPlates.processEvent(PartType.TOOL_HEAD, eventFriend);
-        this.materialGambeson.processEvent(PartType.TOOL_BINDER, eventFriend);
-        this.materialLinks.processEvent(PartType.TOOL_ROD, eventFriend);
+    public void processEvent(@Nonnull EventFriend<?> eventFriend) {
+        this.materialPlates.processEvent(PartType.ARMOR_PLATES, eventFriend);
+        this.materialGambeson.processEvent(PartType.ARMOR_GAMBESON, eventFriend);
+        this.materialLinks.processEvent(PartType.ARMOR_LINKS, eventFriend);
     }
 
-    public int getToolLevel() {
-        return toolLevel;
+    public int getArmorLevel() {
+        return armorLevel;
     }
 
-    public void setToolLevel(int toolLevel) {
-        this.toolLevel = toolLevel;
+    public void setArmorLevel(int armorLevel) {
+        this.armorLevel = armorLevel;
     }
 
-    public int getToolExp() {
-        return toolExp;
+    public int getArmorExp() {
+        return armorExp;
     }
 
-    public void setToolExp(int toolExp) {
-        this.toolExp = toolExp;
+    public void setArmorExp(int armorExp) {
+        this.armorExp = armorExp;
+    }
+
+    public int getFreeModSlots() {
+        return freeModSlots;
+    }
+
+    public void setFreeModSlots(int freeModSlots) {
+        this.freeModSlots = freeModSlots;
     }
 
     @Nonnull

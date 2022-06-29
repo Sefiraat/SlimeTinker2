@@ -1,7 +1,6 @@
 package dev.sefiraat.slimetinker2;
 
 import dev.sefiraat.slimetinker2.api.TinkerMaterial;
-import org.bukkit.event.Event;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
