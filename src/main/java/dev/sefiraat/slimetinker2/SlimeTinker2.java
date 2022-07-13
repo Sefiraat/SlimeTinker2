@@ -1,6 +1,7 @@
 package dev.sefiraat.slimetinker2;
 
 import dev.sefiraat.slimetinker2.api.TinkerExtension;
+import dev.sefiraat.slimetinker2.implementation.TinkerGroups;
 import dev.sefiraat.slimetinker2.implementation.managers.ConfigManager;
 import dev.sefiraat.slimetinker2.implementation.managers.DispatchManager;
 import dev.sefiraat.slimetinker2.implementation.managers.ListenerManager;
@@ -11,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -23,16 +23,12 @@ public class SlimeTinker2 extends JavaPlugin implements SlimefunAddon {
 
     private static SlimeTinker2 instance;
 
-    private static final TinkerExtension EXTENSION = new TinkerExtension(
-        new ItemStack(Material.COAL),
-        "SlimeTinker2"
-    );
-
     private final String username;
     private final String repo;
     private final String branch;
 
     private ConfigManager configManager;
+    private TinkerExtension extension;
     private SupportedPluginManager supportedPluginManager;
     private ListenerManager listenerManager;
     private TaskManager taskManager;
@@ -57,11 +53,20 @@ public class SlimeTinker2 extends JavaPlugin implements SlimefunAddon {
         this.configManager = new ConfigManager();
         tryUpdate();
 
+        this.extension = new TinkerExtension(
+            instance,
+            Material.COAL,
+            "SlimeTinker2",
+            "lang",
+            "en-GB.yml"
+        );
+
         this.supportedPluginManager = new SupportedPluginManager();
         this.listenerManager = new ListenerManager();
         this.taskManager = new TaskManager();
         this.registry = new Registry();
 
+        TinkerGroups.setup();
         Materials.init();
 
         this.dispatchManager = new DispatchManager(this);
@@ -140,7 +145,7 @@ public class SlimeTinker2 extends JavaPlugin implements SlimefunAddon {
     }
 
     public static TinkerExtension getExtension() {
-        return EXTENSION;
+        return SlimeTinker2.getInstance().extension;
     }
 
 }

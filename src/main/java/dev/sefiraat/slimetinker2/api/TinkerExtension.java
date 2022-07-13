@@ -1,28 +1,53 @@
 package dev.sefiraat.slimetinker2.api;
 
-import org.bukkit.inventory.ItemStack;
+import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import org.bukkit.Material;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class TinkerExtension {
 
     @Nonnull
-    private final ItemStack itemStack;
+    private final SlimefunAddon addon;
+    @Nonnull
+    private final Material material;
     @Nonnull
     private final String extensionName;
+    @Nonnull
+    private final TinkerLanguage language;
 
-    public TinkerExtension(@Nonnull ItemStack itemStack, @Nonnull String extensionName) {
-        this.itemStack = itemStack;
-        this.extensionName = extensionName;
+
+    @ParametersAreNonnullByDefault
+    public TinkerExtension(SlimefunAddon addon,
+                           Material stack,
+                           String name,
+                           String langDirectory,
+                           String englishFileName
+    ) {
+        this.addon = addon;
+        this.material = stack;
+        this.extensionName = name;
+        this.language = new TinkerLanguage(this, langDirectory, englishFileName);
     }
 
     @Nonnull
-    public ItemStack getItemStack() {
-        return itemStack;
+    public Material getMaterial() {
+        return material;
     }
 
     @Nonnull
     public String getExtensionName() {
         return extensionName;
+    }
+
+    @Nonnull
+    public SlimefunAddon getAddon() {
+        return addon;
+    }
+
+    @Nonnull
+    public TinkerLanguage getLanguage() {
+        return language;
     }
 }

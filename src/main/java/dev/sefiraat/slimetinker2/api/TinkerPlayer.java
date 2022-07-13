@@ -1,6 +1,8 @@
 package dev.sefiraat.slimetinker2.api;
 
 import dev.sefiraat.slimetinker2.api.friends.EventFriend;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerArmor;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerTool;
 import dev.sefiraat.slimetinker2.utils.Keys;
 import dev.sefiraat.slimetinker2.utils.datatypes.DataTypes;
 import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
@@ -43,6 +45,9 @@ public class TinkerPlayer {
         }
         final ItemMeta possibleToolMeta = possibleTool.getItemMeta();
         this.tool = PersistentDataAPI.get(possibleToolMeta, Keys.TINKER_TOOL, DataTypes.TINKER_TOOL);
+        if (this.tool != null) {
+            this.tool.setItemStack(possibleTool);
+        }
     }
 
     private void setupHelmet() {
@@ -70,8 +75,10 @@ public class TinkerPlayer {
         if (itemStack == null || itemStack.getType() == Material.AIR) {
             return null;
         }
-        final ItemMeta possibleToolMeta = itemStack.getItemMeta();
-        return PersistentDataAPI.get(possibleToolMeta, Keys.TINKER_ARMOR, DataTypes.TINKER_ARMOR);
+        final ItemMeta meta = itemStack.getItemMeta();
+        final TinkerArmor tinkerArmor = PersistentDataAPI.get(meta, Keys.TINKER_ARMOR, DataTypes.TINKER_ARMOR);
+        tinkerArmor.setItemStack(itemStack);
+        return tinkerArmor;
     }
 
     public void processEvent(@Nonnull EventFriend<?> eventFriend) {

@@ -15,6 +15,7 @@ public final class Keys {
     public static final NamespacedKey HAPPY_PIGLIN = newKey("happy-piglin");
     public static final NamespacedKey TINKER_TOOL = newKey("tinker-tool");
     public static final NamespacedKey TINKER_ARMOR = newKey("tinker-armor");
+    public static final NamespacedKey IDENTITY = newKey("tinker-identity");
 
     @Nonnull
     public static NamespacedKey newKey(@Nonnull String value) {

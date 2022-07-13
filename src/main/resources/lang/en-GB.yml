@@ -1,0 +1,52 @@
+materials:
+  core_iron:
+    name: "Iron"
+    traits:
+      tool_head:
+        name: "Stability"
+        lore:
+          - "Does... hmm.. Nothing..."
+      tool_rod:
+        name: "Sharp I"
+        lore:
+          - "Gives increased damage, stacks with"
+          - "mods and other properties."
+      armor_plates:
+        name: "Steadfast"
+        lore:
+          - "33% chance to ignore an explosion"
+      armor_links:
+        name: "Rusty"
+        lore:
+          - "Armour durability loss +10%. Player Exp gain +10%"
+  core_gold:
+    name: "Gold"
+    traits:
+      tool_head:
+        name: "Golden Veil"
+        lore:
+          - "Makes the player invisible. If used"
+          - "on a weapon, -100% damage."
+      tool_rod:
+        name: "All that Glitters"
+        lore:
+          - "Makes you all shiny..."
+      armor_plates:
+        name: "Prosperous"
+        lore:
+          - "1% chance to drop a gold nugget when hit"
+      armor_links:
+        name: "Barter"
+        lore:
+          - "Piglins like your armour"
+  core_string:
+    name: "String"
+    traits:
+      tool_binder:
+        name: "It Just Works"
+        lore:
+          - "No special effects."
+      armor_gambeson:
+        name: "It Just Works"
+        lore:
+          - "No special effects."

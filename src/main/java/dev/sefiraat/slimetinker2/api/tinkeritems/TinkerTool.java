@@ -1,23 +1,27 @@
-package dev.sefiraat.slimetinker2.api;
+package dev.sefiraat.slimetinker2.api.tinkeritems;
 
+import dev.sefiraat.slimetinker2.api.TinkerMaterial;
 import dev.sefiraat.slimetinker2.api.enums.PartType;
+import dev.sefiraat.slimetinker2.api.enums.TinkerIdentity;
 import dev.sefiraat.slimetinker2.api.enums.ToolType;
 import dev.sefiraat.slimetinker2.api.friends.EventFriend;
 import dev.sefiraat.slimetinker2.utils.Keys;
 import dev.sefiraat.slimetinker2.utils.datatypes.DataTypes;
 import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
+import io.github.sefiraat.sefilib.string.Theme;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class TinkerTool {
+public class TinkerTool extends TinkerItem {
 
     private static final Map<Integer, Map<ToolType, Material>> PROGRESSION_MAP = Map.of(
         0, Map.of(
@@ -64,9 +68,6 @@ public class TinkerTool {
         )
     );
 
-    private int toolLevel;
-    private int toolExp;
-    private int freeModSlots;
     private ToolType toolType;
     @Nonnull
     private TinkerMaterial materialHead;
@@ -84,43 +85,31 @@ public class TinkerTool {
                       TinkerMaterial binder,
                       TinkerMaterial rod
     ) {
-        this.toolLevel = toolLevel;
-        this.toolExp = toolExp;
-        this.freeModSlots = slots;
+        this(toolLevel, toolExp, slots, toolType, head, binder, rod, null);
+    }
+
+    @ParametersAreNonnullByDefault
+    public TinkerTool(int toolLevel,
+                      int toolExp,
+                      int slots,
+                      ToolType toolType,
+                      TinkerMaterial head,
+                      TinkerMaterial binder,
+                      TinkerMaterial rod,
+                      @Nullable ItemStack itemStack
+    ) {
+        super(TinkerIdentity.TOOL, toolLevel, toolExp, slots);
         this.toolType = toolType;
         this.materialHead = head;
         this.materialBinder = binder;
         this.materialRod = rod;
+        setItemStack(itemStack);
     }
 
     public void processEvent(@Nonnull EventFriend<?> eventFriend) {
         this.materialHead.processEvent(PartType.TOOL_HEAD, eventFriend);
         this.materialBinder.processEvent(PartType.TOOL_BINDER, eventFriend);
         this.materialRod.processEvent(PartType.TOOL_ROD, eventFriend);
-    }
-
-    public int getToolLevel() {
-        return toolLevel;
-    }
-
-    public void setToolLevel(int toolLevel) {
-        this.toolLevel = toolLevel;
-    }
-
-    public int getToolExp() {
-        return toolExp;
-    }
-
-    public void setToolExp(int toolExp) {
-        this.toolExp = toolExp;
-    }
-
-    public int getFreeModSlots() {
-        return freeModSlots;
-    }
-
-    public void setFreeModSlots(int freeModSlots) {
-        this.freeModSlots = freeModSlots;
     }
 
     public ToolType getToolType() {
@@ -158,19 +147,41 @@ public class TinkerTool {
         this.materialRod = materialRod;
     }
 
+    @Override
     public ItemStack createItemStack() {
         final TreeMap<Integer, Map<ToolType, Material>> map = new TreeMap<>(PROGRESSION_MAP);
-        final ItemStack newStack = new ItemStack(map.floorEntry(toolLevel).getValue().get(toolType));
+        final ItemStack newStack = new ItemStack(map.floorEntry(getLevel()).getValue().get(toolType));
         final ItemMeta itemMeta = newStack.getItemMeta();
 
+        setIdentity(itemMeta);
+        updateItemName(itemMeta);
+
         PersistentDataAPI.set(itemMeta, Keys.TINKER_TOOL, DataTypes.TINKER_TOOL, this);
-        itemMeta.setLore(getLore());
+        itemMeta.setLore(createLore());
         newStack.setItemMeta(itemMeta);
 
         return newStack;
     }
 
-    public List<String> getLore() {
+    @Override
+    public List<String> createLore() {
         return new ArrayList<>();
+    }
+
+    @Override
+    public void updateLore() {
+
+    }
+
+    @Override
+    public void updateItemName(@Nonnull ItemMeta itemMeta) {
+        final String divider = Theme.PASSIVE.apply(" | ");
+        itemMeta.setDisplayName(
+            Theme.PASSIVE.apply("[") +
+                materialHead.getDisplayName() + divider +
+                materialBinder.getDisplayName() + divider +
+                materialRod.getDisplayName() +
+                Theme.PASSIVE.apply("]" + toolType.getName())
+        );
     }
 }

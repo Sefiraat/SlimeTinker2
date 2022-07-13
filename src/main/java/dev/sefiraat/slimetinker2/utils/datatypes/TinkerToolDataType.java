@@ -1,8 +1,8 @@
 package dev.sefiraat.slimetinker2.utils.datatypes;
 
 import dev.sefiraat.slimetinker2.api.TinkerMaterial;
-import dev.sefiraat.slimetinker2.api.TinkerTool;
 import dev.sefiraat.slimetinker2.api.enums.ToolType;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerTool;
 import dev.sefiraat.slimetinker2.utils.Keys;
 import org.bukkit.NamespacedKey;
 import org.bukkit.persistence.PersistentDataAdapterContext;
@@ -42,9 +42,9 @@ public class TinkerToolDataType implements PersistentDataType<PersistentDataCont
         container.set(MATERIAL_ID_HEAD, STRING, complex.getMaterialHead().getId());
         container.set(MATERIAL_ID_BINDER, STRING, complex.getMaterialBinder().getId());
         container.set(MATERIAL_ID_ROD, STRING, complex.getMaterialRod().getId());
-        container.set(TOOL_LEVEL, INTEGER, complex.getToolLevel());
-        container.set(TOOL_EXP, INTEGER, complex.getToolExp());
-        container.set(TOOL_MOD_SLOTS, INTEGER, complex.getFreeModSlots());
+        container.set(TOOL_LEVEL, INTEGER, complex.getLevel());
+        container.set(TOOL_EXP, INTEGER, complex.getCurrentExp());
+        container.set(TOOL_MOD_SLOTS, INTEGER, complex.getOpenSlots());
         container.set(TOOL_TYPE, STRING, complex.getToolType().toString());
         return container;
     }

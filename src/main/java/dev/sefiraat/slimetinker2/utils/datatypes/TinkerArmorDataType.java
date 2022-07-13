@@ -1,8 +1,8 @@
 package dev.sefiraat.slimetinker2.utils.datatypes;
 
-import dev.sefiraat.slimetinker2.api.TinkerArmor;
 import dev.sefiraat.slimetinker2.api.TinkerMaterial;
 import dev.sefiraat.slimetinker2.api.enums.ArmorType;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerArmor;
 import dev.sefiraat.slimetinker2.utils.Keys;
 import org.bukkit.NamespacedKey;
 import org.bukkit.persistence.PersistentDataAdapterContext;
@@ -42,9 +42,9 @@ public class TinkerArmorDataType implements PersistentDataType<PersistentDataCon
         container.set(MATERIAL_ID_PLATES, STRING, complex.getMaterialPlates().getId());
         container.set(MATERIAL_ID_GAMBESON, STRING, complex.getMaterialGambeson().getId());
         container.set(MATERIAL_ID_LINKS, STRING, complex.getMaterialLinks().getId());
-        container.set(ARMOR_LEVEL, INTEGER, complex.getArmorLevel());
-        container.set(ARMOR_EXP, INTEGER, complex.getArmorExp());
-        container.set(ARMOR_MOD_SLOTS, INTEGER, complex.getFreeModSlots());
+        container.set(ARMOR_LEVEL, INTEGER, complex.getLevel());
+        container.set(ARMOR_EXP, INTEGER, complex.getCurrentExp());
+        container.set(ARMOR_MOD_SLOTS, INTEGER, complex.getOpenSlots());
         container.set(ARMOR_TYPE, STRING, complex.getArmorType().toString());
         return container;
     }

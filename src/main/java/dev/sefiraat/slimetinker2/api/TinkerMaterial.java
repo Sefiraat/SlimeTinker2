@@ -4,19 +4,21 @@ import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.api.enums.PartType;
 import dev.sefiraat.slimetinker2.api.friends.EventFriend;
 import dev.sefiraat.slimetinker2.api.textures.AlloyTexture;
+import dev.sefiraat.slimetinker2.implementation.Themes;
 import io.github.sefiraat.sefilib.string.Theme;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashMap;
+import java.util.EnumMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class TinkerMaterial {
     private String id;
     private Theme theme;
     private Map<PartType, TinkerTrait> traitMap;
-    private TinkerExtension addedBy;
+    private TinkerExtension extension;
     private String sponsor = null;
     private AlloyTexture alloyTexture;
     private String[] alloyRecipe = new String[0];
@@ -42,6 +44,23 @@ public class TinkerMaterial {
 
     @Nonnull
     public TinkerMaterial register() {
+        for (Map.Entry<PartType, TinkerTrait> entry : traitMap.entrySet()) {
+            final TinkerTrait trait = entry.getValue();
+            final String part = entry.getKey().toString();
+            final String path = ("materials." + this.id + ".traits." + part).toLowerCase(Locale.ROOT);
+
+            trait.setTraitName(this.extension.getLanguage().getString(path + ".name"));
+            trait.setLore(this.extension.getLanguage().getStringList(path + ".lore"));
+            trait.setDisplayStack(
+                Theme.themedItemStack(
+                    trait.getDisplayMaterial() == null ? this.extension.getMaterial() : trait.getDisplayMaterial(),
+                    Themes.TRAIT,
+                    trait.getTraitName(),
+                    trait.getLore().toArray(new String[]{})
+                )
+            );
+            trait.setTinkerMaterial(this);
+        }
         SlimeTinker2.getRegistry().registerMaterial(this);
         this.registered = true;
         return this;
@@ -49,6 +68,7 @@ public class TinkerMaterial {
 
     public void processEvent(@Nonnull PartType partType, @Nonnull EventFriend<?> eventFriend) {
         final TinkerTrait tinkerTrait = traitMap.get(partType);
+
         if (tinkerTrait != null) {
             tinkerTrait.run(eventFriend);
         }
@@ -62,12 +82,24 @@ public class TinkerMaterial {
         this.id = id;
     }
 
+    public TinkerExtension getExtension() {
+        return extension;
+    }
+
+    public void setExtension(TinkerExtension extension) {
+        this.extension = extension;
+    }
+
     public Theme getTheme() {
         return theme;
     }
 
     public void setTheme(Theme theme) {
         this.theme = theme;
+    }
+
+    public String getLoreLine(@Nonnull PartType partType) {
+        return Theme.PASSIVE + partType.getName() + ": " + theme.apply(getTrait(partType).getTraitName());
     }
 
     public Map<PartType, TinkerTrait> getTraitMap() {
@@ -91,16 +123,16 @@ public class TinkerMaterial {
 
     @Nonnull
     public TinkerExtension getAddedBy() {
-        return this.addedBy;
+        return this.extension;
     }
 
     @Nonnull
     public String getAddedByName() {
-        return this.addedBy.getExtensionName();
+        return this.extension.getExtensionName();
     }
 
-    public void setAddedBy(@Nonnull TinkerExtension addedBy) {
-        this.addedBy = addedBy;
+    public void setAddedBy(@Nonnull TinkerExtension extension) {
+        this.extension = extension;
     }
 
     @Nullable
@@ -234,6 +266,10 @@ public class TinkerMaterial {
         return this.registered;
     }
 
+    public String getDisplayName() {
+        return theme.apply(theme.getLoreLine());
+    }
+
     @Nullable
     public static TinkerMaterial getById(@Nonnull String id) {
         return SlimeTinker2.getRegistry().getTinkerMaterial(id);
@@ -242,7 +278,7 @@ public class TinkerMaterial {
     public static final class Builder {
         private String id;
         private Theme theme;
-        private Map<PartType, TinkerTrait> traitMap = new HashMap<>();
+        private Map<PartType, TinkerTrait> traitMap = new EnumMap<>(PartType.class);
         private TinkerExtension addedBy;
         private String sponsor = null;
         private AlloyTexture alloyTexture;

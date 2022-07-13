@@ -1,9 +1,9 @@
 package dev.sefiraat.slimetinker2.api.friends;
 
-import dev.sefiraat.slimetinker2.api.TinkerArmor;
 import dev.sefiraat.slimetinker2.api.TinkerPlayer;
-import dev.sefiraat.slimetinker2.api.TinkerTool;
 import dev.sefiraat.slimetinker2.api.enums.TinkerEventType;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerArmor;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerTool;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 

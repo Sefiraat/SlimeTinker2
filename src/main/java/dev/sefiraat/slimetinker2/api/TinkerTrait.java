@@ -7,16 +7,21 @@ import dev.sefiraat.slimetinker2.api.friends.EventFriend;
 import dev.sefiraat.slimetinker2.api.friends.PlayerDamagedEventFriend;
 import dev.sefiraat.slimetinker2.api.friends.RightClickEventFriend;
 import dev.sefiraat.slimetinker2.api.friends.TickEventFriend;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class TinkerTrait {
     private String traitName = "";
-    private String[] lore = new String[0];
-    private CustomItemStack displayStack;
+    private TinkerMaterial tinkerMaterial;
+    private List<String> lore = new ArrayList<>();
+    private Material displayMaterial;
+    private ItemStack displayStack;
 
     private Consumer<BlockBreakEventFriend> blockBreakEvent;
     private Consumer<DurabilityLossEventFriend> durabilityLossEvent;
@@ -34,12 +39,20 @@ public class TinkerTrait {
         this.traitName = traitName;
     }
 
+    public TinkerMaterial getTinkerMaterial() {
+        return tinkerMaterial;
+    }
+
+    public void setTinkerMaterial(TinkerMaterial tinkerMaterial) {
+        this.tinkerMaterial = tinkerMaterial;
+    }
+
     @Nonnull
-    public String[] getLore() {
+    public List<String> getLore() {
         return lore;
     }
 
-    public void setLore(@Nonnull String... lore) {
+    public void setLore(@Nonnull List<String> lore) {
         this.lore = lore;
     }
 
@@ -97,12 +110,20 @@ public class TinkerTrait {
         this.rightClickEvent = rightClickEvent;
     }
 
-    @Nonnull
-    public CustomItemStack getDisplayStack() {
-        return displayStack;
+    public Material getDisplayMaterial() {
+        return displayMaterial;
     }
 
-    public void setDisplayStack(@Nonnull CustomItemStack displayStack) {
+    public void setDisplayMaterial(Material displayMaterial) {
+        this.displayMaterial = displayMaterial;
+    }
+
+    @Nonnull
+    public ItemStack getDisplayStack() {
+        return this.displayStack;
+    }
+
+    public void setDisplayStack(@Nonnull ItemStack displayStack) {
         this.displayStack = displayStack;
     }
 
@@ -143,9 +164,7 @@ public class TinkerTrait {
 
 
     public static final class Builder {
-        private String traitName = "";
-        private String[] lore = new String[0];
-        private CustomItemStack displayStack;
+        private Material displayMaterial;
         private Consumer<BlockBreakEventFriend> blockBreakEvent;
         private Consumer<DurabilityLossEventFriend> durabilityLossEvent;
         private Consumer<EntityDamagedByPlayerEventFriend> entityDamagedEvent;
@@ -156,18 +175,8 @@ public class TinkerTrait {
         private Builder() {
         }
 
-        public Builder withTraitName(String traitName) {
-            this.traitName = traitName;
-            return this;
-        }
-
-        public Builder withLore(String... lore) {
-            this.lore = lore;
-            return this;
-        }
-
-        public Builder withDisplayStack(CustomItemStack displayStack) {
-            this.displayStack = displayStack;
+        public Builder withMaterial(Material material) {
+            this.displayMaterial = material;
             return this;
         }
 
@@ -202,8 +211,7 @@ public class TinkerTrait {
         }
 
         public Builder but() {
-            return withTraitName(traitName).withLore(lore)
-                .withDisplayStack(displayStack)
+            return withMaterial(displayMaterial)
                 .withBlockBreakEvent(blockBreakEvent)
                 .withDurabilityLossEvent(durabilityLossEvent)
                 .withEntityDamagedEvent(entityDamagedEvent)
@@ -215,9 +223,7 @@ public class TinkerTrait {
 
         public TinkerTrait build() {
             TinkerTrait tinkerTrait = new TinkerTrait();
-            tinkerTrait.setTraitName(traitName);
-            tinkerTrait.setLore(lore);
-            tinkerTrait.setDisplayStack(displayStack);
+            tinkerTrait.setDisplayMaterial(displayMaterial);
             tinkerTrait.setBlockBreakEvent(blockBreakEvent);
             tinkerTrait.setDurabilityLossEvent(durabilityLossEvent);
             tinkerTrait.setEntityDamagedEvent(entityDamagedEvent);

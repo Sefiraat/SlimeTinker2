@@ -1,0 +1,57 @@
+materials:
+  core_iron:
+    name: "铁"
+    traits:
+      tool_head:
+        name: "稳定"
+        lore:
+          - "没有特性!"
+      tool_rod:
+        name: "锋利 1"
+        lore:
+          - "获得力量效果 (可叠加)"
+      armor_plates:
+        name: "坚固"
+        lore:
+          - "有33%的几率免疫爆炸伤害"
+      armor_links:
+        name: "腐蚀"
+        lore:
+          - "-10% 输出伤害"
+          - "+10% 玩家经验获取"
+  core_gold:
+    name: "金"
+    traits:
+      tool_head:
+        name: "金色面纱"
+        lore:
+          - "获得隐身效果"
+          - ""
+          - "应用在武器上时: "
+          - "-100% 输出伤害"
+      tool_rod:
+        name: "闪闪发光"
+        lore:
+          - "获得发光效果"
+      armor_plates:
+        name: "繁荣"
+        lore:
+          - "在受到伤害时"
+          - "有1%几率掉落1个金粒"
+      armor_links:
+        name: "来个交易"
+        lore:
+          - "猪灵会被你吸引"
+  core_string:
+    name: "线"
+    traits:
+      tool_binder:
+        name: "又不是不能用"
+        lore:
+          - "没有任何效果"
+          - "能用就行了"
+      armor_gambeson:
+        name: "又不是不能用"
+        lore:
+          - "没有任何效果"
+          - "能用就行了"

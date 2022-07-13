@@ -8,13 +8,16 @@ import co.aikar.commands.annotation.Default;
 import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
 import dev.sefiraat.slimetinker2.SlimeTinker2;
-import dev.sefiraat.slimetinker2.api.TinkerArmor;
-import dev.sefiraat.slimetinker2.api.TinkerTool;
 import dev.sefiraat.slimetinker2.api.enums.ArmorType;
 import dev.sefiraat.slimetinker2.api.enums.ToolType;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerArmor;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerItem;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerTool;
 import io.github.sefiraat.sefilib.string.Theme;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 @CommandAlias("SlimeTinker2|st2|tinker2")
 public class TinkerCommands extends BaseCommand {
@@ -23,6 +26,45 @@ public class TinkerCommands extends BaseCommand {
     public void onDefault(CommandSender sender) {
         if (sender instanceof Player) {
             sender.sendMessage(Theme.ERROR + "Please provide a valid subcommand.");
+        }
+    }
+
+    @Subcommand("SetLevel")
+    @CommandPermission("SlimeTinker2.Admin")
+    @Description("Sets the level of the currently held item")
+    public void setLevel(CommandSender sender, int level) {
+        if (sender instanceof Player player) {
+            final ItemStack itemStack = player.getInventory().getItemInMainHand();
+            if (itemStack.getType() != Material.AIR) {
+                final TinkerItem tinkerItem = TinkerItem.getTinkerItem(itemStack);
+                tinkerItem.setLevel(level, true);
+            }
+        }
+    }
+
+    @Subcommand("SetExp")
+    @CommandPermission("SlimeTinker2.Admin")
+    @Description("Sets the exp of the currently held item")
+    public void setExp(CommandSender sender, int exp) {
+        if (sender instanceof Player player) {
+            final ItemStack itemStack = player.getInventory().getItemInMainHand();
+            if (itemStack.getType() != Material.AIR) {
+                final TinkerItem tinkerItem = TinkerItem.getTinkerItem(itemStack);
+                tinkerItem.setCurrentExp(exp);
+            }
+        }
+    }
+
+    @Subcommand("AddExp")
+    @CommandPermission("SlimeTinker2.Admin")
+    @Description("Adds exp to the currently held item")
+    public void addExp(CommandSender sender, int exp) {
+        if (sender instanceof Player player) {
+            final ItemStack itemStack = player.getInventory().getItemInMainHand();
+            if (itemStack.getType() != Material.AIR) {
+                final TinkerItem tinkerItem = TinkerItem.getTinkerItem(itemStack);
+                tinkerItem.addExp(exp);
+            }
         }
     }
 

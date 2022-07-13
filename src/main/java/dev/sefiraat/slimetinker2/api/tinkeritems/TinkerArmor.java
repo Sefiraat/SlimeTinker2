@@ -1,23 +1,27 @@
-package dev.sefiraat.slimetinker2.api;
+package dev.sefiraat.slimetinker2.api.tinkeritems;
 
+import dev.sefiraat.slimetinker2.api.TinkerMaterial;
 import dev.sefiraat.slimetinker2.api.enums.ArmorType;
 import dev.sefiraat.slimetinker2.api.enums.PartType;
+import dev.sefiraat.slimetinker2.api.enums.TinkerIdentity;
 import dev.sefiraat.slimetinker2.api.friends.EventFriend;
+import dev.sefiraat.slimetinker2.utils.Experience;
 import dev.sefiraat.slimetinker2.utils.Keys;
 import dev.sefiraat.slimetinker2.utils.datatypes.DataTypes;
 import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
+import io.github.sefiraat.sefilib.string.Theme;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class TinkerArmor {
+public class TinkerArmor extends TinkerItem {
 
     private static final Map<Integer, Map<ArmorType, Material>> PROGRESSION_MAP = Map.of(
         0, Map.of(
@@ -52,9 +56,6 @@ public class TinkerArmor {
         )
     );
 
-    private int armorLevel;
-    private int armorExp;
-    private int freeModSlots;
     private ArmorType armorType;
     @Nonnull
     private TinkerMaterial materialPlates;
@@ -72,43 +73,31 @@ public class TinkerArmor {
                        TinkerMaterial gambeson,
                        TinkerMaterial links
     ) {
-        this.armorLevel = armorLevel;
-        this.armorExp = armorExp;
+        this(armorLevel, armorExp, slots, armorType, plates, gambeson, links, null);
+    }
+
+    @ParametersAreNonnullByDefault
+    public TinkerArmor(int armorLevel,
+                       int armorExp,
+                       int slots,
+                       ArmorType armorType,
+                       TinkerMaterial plates,
+                       TinkerMaterial gambeson,
+                       TinkerMaterial links,
+                       @Nullable ItemStack itemStack
+    ) {
+        super(TinkerIdentity.ARMOR, armorLevel, armorExp, slots);
         this.armorType = armorType;
-        this.freeModSlots = slots;
         this.materialPlates = plates;
         this.materialGambeson = gambeson;
         this.materialLinks = links;
+        setItemStack(itemStack);
     }
 
     public void processEvent(@Nonnull EventFriend<?> eventFriend) {
         this.materialPlates.processEvent(PartType.ARMOR_PLATES, eventFriend);
         this.materialGambeson.processEvent(PartType.ARMOR_GAMBESON, eventFriend);
         this.materialLinks.processEvent(PartType.ARMOR_LINKS, eventFriend);
-    }
-
-    public int getArmorLevel() {
-        return armorLevel;
-    }
-
-    public void setArmorLevel(int armorLevel) {
-        this.armorLevel = armorLevel;
-    }
-
-    public int getArmorExp() {
-        return armorExp;
-    }
-
-    public void setArmorExp(int armorExp) {
-        this.armorExp = armorExp;
-    }
-
-    public int getFreeModSlots() {
-        return freeModSlots;
-    }
-
-    public void setFreeModSlots(int freeModSlots) {
-        this.freeModSlots = freeModSlots;
     }
 
     public ArmorType getArmorType() {
@@ -146,20 +135,54 @@ public class TinkerArmor {
         this.materialLinks = materialLinks;
     }
 
+    @Override
     public ItemStack createItemStack() {
         final TreeMap<Integer, Map<ArmorType, Material>> map = new TreeMap<>(PROGRESSION_MAP);
-        final ItemStack newStack = new ItemStack(map.floorEntry(armorLevel).getValue().get(armorType));
+        final ItemStack newStack = new ItemStack(map.floorEntry(getLevel()).getValue().get(armorType));
         final ItemMeta itemMeta = newStack.getItemMeta();
 
+        setIdentity(itemMeta);
+        updateItemName(itemMeta);
+
         PersistentDataAPI.set(itemMeta, Keys.TINKER_ARMOR, DataTypes.TINKER_ARMOR, this);
-        itemMeta.setLore(getLore());
+        itemMeta.setLore(createLore());
         newStack.setItemMeta(itemMeta);
 
         return newStack;
     }
 
-    public List<String> getLore() {
-        return new ArrayList<>();
+    @Override
+    public List<String> createLore() {
+        final String line = Theme.PASSIVE.apply("-".repeat(20));
+        return List.of(
+            line,
+            materialPlates.getLoreLine(PartType.ARMOR_PLATES),
+            materialGambeson.getLoreLine(PartType.ARMOR_GAMBESON),
+            materialLinks.getLoreLine(PartType.ARMOR_LINKS),
+            line,
+            Theme.CLICK_INFO.asTitle("Tool Level", getLevel()),
+            Theme.CLICK_INFO.asTitle("Tool Exp", getCurrentExp()),
+            Experience.getExpProgressionLine(getCurrentExp(), getExpForNextLevel()),
+            line
+        );
     }
 
+    @Override
+    public void updateLore() {
+        final ItemMeta itemMeta = getItemStack().getItemMeta();
+        itemMeta.setLore(createLore());
+        getItemStack().setItemMeta(itemMeta);
+    }
+
+    @Override
+    public void updateItemName(@Nonnull ItemMeta itemMeta) {
+        final String divider = Theme.PASSIVE.apply(" | ");
+        itemMeta.setDisplayName(
+            Theme.PASSIVE.apply("[") +
+                materialPlates.getDisplayName() + divider +
+                materialGambeson.getDisplayName() + divider +
+                materialLinks.getDisplayName() +
+                Theme.PASSIVE.apply("] " + armorType.getName())
+        );
+    }
 }

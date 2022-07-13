@@ -38,15 +38,15 @@
             </relocation>
             <relocation>
               <pattern>io.github.bakedlibs.dough</pattern>
-                <shadedPattern>dev.sefiraat.slimetinker2.dough</shadedPattern>
+              <shadedPattern>dev.sefiraat.slimetinker2.dough</shadedPattern>
             </relocation>
             <relocation>
               <pattern>io.papermc.lib</pattern>
-                <shadedPattern>dev.sefiraat.slimetinker2.paperlib</shadedPattern>
+              <shadedPattern>dev.sefiraat.slimetinker2.paperlib</shadedPattern>
             </relocation>
             <relocation>
               <pattern>io.github.sefiraat.sefilib</pattern>
-                <shadedPattern>io.github.sefiraat.slimetinker2.sefilib</shadedPattern>
+              <shadedPattern>io.github.sefiraat.slimetinker2.sefilib</shadedPattern>
             </relocation>
           </relocations>
           <filters>
@@ -102,7 +102,7 @@
     <dependency>
       <groupId>com.github.Slimefun</groupId>
       <artifactId>Slimefun4</artifactId>
-      <version>2c4f886</version>
+      <version>5dbe617205</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

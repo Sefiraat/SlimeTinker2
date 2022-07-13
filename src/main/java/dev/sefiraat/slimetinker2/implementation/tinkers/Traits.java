@@ -23,24 +23,16 @@ public final class Traits {
     // region Iron
 
     public static final TinkerTrait IRON_TOOL_HEAD = TinkerTrait.Builder.start()
-        .withTraitName("Stability")
-        .withLore("Does... hmm.. Nothing...")
+        .withMaterial(Material.IRON_INGOT)
         .build();
 
     public static final TinkerTrait IRON_TOOL_ROD = TinkerTrait.Builder.start()
-        .withTraitName("Sharp I")
-        .withLore(
-            "Gives increased damage, stacks with",
-            "mods and other properties."
-        )
+        .withMaterial(Material.IRON_SWORD)
         .withTickEvent(friend -> friend.increasePotionEffect(PotionEffectType.INCREASE_DAMAGE))
         .build();
 
     public static final TinkerTrait IRON_ARMOR_PLATES = TinkerTrait.Builder.start()
-        .withTraitName("Steadfast")
-        .withLore(
-            "33% chance to ignore an explosion"
-        )
+        .withMaterial(Material.CREEPER_HEAD)
         .withPlayerDamagedEvent(friend -> {
             final EntityDamageEvent event = friend.getEvent();
             if ((event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
@@ -53,10 +45,7 @@ public final class Traits {
         .build();
 
     public static final TinkerTrait IRON_ARMOR_LINKS = TinkerTrait.Builder.start()
-        .withTraitName("Rusty")
-        .withLore(
-            "Armour durability loss +10%. Player Exp gain +10%"
-        )
+        .withMaterial(Material.SHIELD)
         .withEntityDamagedEvent(friend -> {
             friend.reduceDamageMod(0.1);
             friend.addExpMod(0.1);
@@ -68,28 +57,18 @@ public final class Traits {
     // region Gold
 
     public static final TinkerTrait GOLD_TOOL_HEAD = TinkerTrait.Builder.start()
-        .withTraitName("Golden Veil")
-        .withLore(
-            "Makes the player invisible. If used on",
-            "a weapon, -100% damage."
-        )
+        .withMaterial(Material.LINGERING_POTION)
         .withPlayerDamagedEvent(friend -> friend.reduceDamageMod(1))
         .withTickEvent(friend -> friend.increasePotionEffect(PotionEffectType.INVISIBILITY))
         .build();
 
     public static final TinkerTrait GOLD_TOOL_ROD = TinkerTrait.Builder.start()
-        .withTraitName("All that Glitters")
-        .withLore(
-            "Makes you all shiny..."
-        )
+        .withMaterial(Material.GLOW_BERRIES)
         .withTickEvent(friend -> friend.increasePotionEffect(PotionEffectType.GLOWING))
         .build();
 
     public static final TinkerTrait GOLD_ARMOR_PLATES = TinkerTrait.Builder.start()
-        .withTraitName("Prosperous")
-        .withLore(
-            "1% chance to drop a gold nugget when hit"
-        )
+        .withMaterial(Material.GOLD_NUGGET)
         .withPlayerDamagedEvent(friend -> {
             if (Chance.testChance(1, 100)) {
                 final Location location = friend.getTinkerPlayer().getPlayer().getLocation();
@@ -99,10 +78,7 @@ public final class Traits {
         .build();
 
     public static final TinkerTrait GOLD_ARMOR_LINKS = TinkerTrait.Builder.start()
-        .withTraitName("Barter")
-        .withLore(
-            "Piglins like your armour"
-        )
+        .withMaterial(Material.PIGLIN_SPAWN_EGG)
         .withTickEvent(friend -> {
             List<Entity> entities = friend.getTinkerPlayer().getPlayer().getNearbyEntities(5, 5, 5);
             for (Entity entity : entities) {
@@ -123,13 +99,11 @@ public final class Traits {
     // region String
 
     public static final TinkerTrait STRING_TOOL_BINDER = TinkerTrait.Builder.start()
-        .withTraitName("It Just Works")
-        .withLore("No special effects.")
+        .withMaterial(Material.STRING)
         .build();
 
     public static final TinkerTrait STRING_ARMOR_GAMBESON = TinkerTrait.Builder.start()
-        .withTraitName("It Just Works")
-        .withLore("No special effects.")
+        .withMaterial(Material.STRING)
         .build();
 
     // endregion

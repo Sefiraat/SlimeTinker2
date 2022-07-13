@@ -1,10 +1,23 @@
 package dev.sefiraat.slimetinker2.api.enums;
 
+import javax.annotation.Nonnull;
+
 public enum PartType {
-    TOOL_HEAD,
-    TOOL_BINDER,
-    TOOL_ROD,
-    ARMOR_PLATES,
-    ARMOR_GAMBESON,
-    ARMOR_LINKS
+    TOOL_HEAD("Head"),
+    TOOL_BINDER("Binder"),
+    TOOL_ROD("Rod"),
+    ARMOR_PLATES("Plates"),
+    ARMOR_GAMBESON("Gambeson"),
+    ARMOR_LINKS("Mail Links");
+
+    private final String displayName;
+
+    PartType(@Nonnull String displayName) {
+        this.displayName = displayName;
+    }
+
+    @Nonnull
+    public String getName() {
+        return displayName;
+    }
 }
