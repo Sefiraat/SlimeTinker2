@@ -4,7 +4,6 @@ import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.api.TinkerMaterial;
 import dev.sefiraat.slimetinker2.api.enums.PartType;
 import dev.sefiraat.slimetinker2.api.textures.AlloyTexture;
-import io.github.sefiraat.sefilib.string.Theme;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
@@ -19,7 +18,7 @@ public final class Materials {
     public static final TinkerMaterial IRON = TinkerMaterial.Builder.start()
         .withId("CORE_IRON")
         .fromTinkerExtension(SlimeTinker2.getExtension())
-        .withTheme(new Theme(ChatColor.of("#8c8c8c"), "Iron"))
+        .withColor(ChatColor.of("#8c8c8c"))
         .withDisplayMaterial(Material.IRON_INGOT)
         .withAlloyTexture(AlloyTexture.ALLOY_SILVER)
         .withFormNugget(new ItemStack(Material.IRON_NUGGET))
@@ -41,7 +40,7 @@ public final class Materials {
     public static final TinkerMaterial GOLD = TinkerMaterial.Builder.start()
         .withId("CORE_GOLD")
         .fromTinkerExtension(SlimeTinker2.getExtension())
-        .withTheme(new Theme(ChatColor.of("#ffe138"), "Gold"))
+        .withColor(ChatColor.of("#ffe138"))
         .withDisplayMaterial(Material.GOLD_INGOT)
         .withAlloyTexture(AlloyTexture.ALLOY_SILVER)
         .withFormNugget(new ItemStack(Material.GOLD_NUGGET))
@@ -63,7 +62,7 @@ public final class Materials {
     public static final TinkerMaterial STRING = TinkerMaterial.Builder.start()
         .withId("CORE_STRING")
         .fromTinkerExtension(SlimeTinker2.getExtension())
-        .withTheme(new Theme(ChatColor.of("#f5f5f5"), "String"))
+        .withColor(ChatColor.of("#f5f5f5"))
         .withDisplayMaterial(Material.STRING)
         .withCraftingStack(new ItemStack(Material.STRING))
         .withTrait(PartType.TOOL_BINDER, Traits.STRING_TOOL_BINDER)

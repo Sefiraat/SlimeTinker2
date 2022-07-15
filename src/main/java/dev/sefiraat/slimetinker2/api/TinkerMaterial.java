@@ -6,6 +6,7 @@ import dev.sefiraat.slimetinker2.api.friends.EventFriend;
 import dev.sefiraat.slimetinker2.api.textures.AlloyTexture;
 import dev.sefiraat.slimetinker2.implementation.TinkerThemes;
 import io.github.sefiraat.sefilib.string.Theme;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 
 public class TinkerMaterial {
     private String id;
+    private ChatColor color;
     private Theme theme;
     private Material displayMaterial;
     private ItemStack displayStack;
@@ -47,13 +49,14 @@ public class TinkerMaterial {
 
     @Nonnull
     public TinkerMaterial register() {
+        final String materialPath = "materials." + this.id.toLowerCase(Locale.ROOT);
         for (Map.Entry<PartType, TinkerTrait> entry : traitMap.entrySet()) {
             final TinkerTrait trait = entry.getValue();
             final String part = entry.getKey().toString();
-            final String path = ("materials." + this.id + ".traits." + part).toLowerCase(Locale.ROOT);
+            final String traitPath = materialPath + ".traits." + part.toLowerCase(Locale.ROOT);
 
-            trait.setTraitName(this.extension.getLanguage().getString(path + ".name"));
-            trait.setLore(this.extension.getLanguage().getStringList(path + ".lore"));
+            trait.setTraitName(this.extension.getLanguage().getString(traitPath + ".name"));
+            trait.setLore(this.extension.getLanguage().getStringList(traitPath + ".lore"));
             trait.setDisplayStack(
                 Theme.themedItemStack(
                     trait.getDisplayMaterial() == null ? this.extension.getMaterial() : trait.getDisplayMaterial(),
@@ -64,6 +67,8 @@ public class TinkerMaterial {
             );
             trait.setTinkerMaterial(this);
         }
+
+        this.theme = new Theme(this.color, this.extension.getLanguage().getString(materialPath + ".name"));
 
         this.displayStack = Theme.themedItemStack(
             this.displayMaterial,
@@ -99,6 +104,14 @@ public class TinkerMaterial {
 
     public void setExtension(TinkerExtension extension) {
         this.extension = extension;
+    }
+
+    public ChatColor getColor() {
+        return color;
+    }
+
+    public void setColor(ChatColor color) {
+        this.color = color;
     }
 
     public Theme getTheme() {
@@ -304,7 +317,7 @@ public class TinkerMaterial {
 
     public static final class Builder {
         private String id;
-        private Theme theme;
+        private ChatColor color;
         private Material displayMaterial;
         private Map<PartType, TinkerTrait> traitMap = new EnumMap<>(PartType.class);
         private TinkerExtension addedBy;
@@ -331,8 +344,8 @@ public class TinkerMaterial {
         }
 
         @Nonnull
-        public Builder withTheme(@Nonnull Theme theme) {
-            this.theme = theme;
+        public Builder withColor(@Nonnull ChatColor color) {
+            this.color = color;
             return this;
         }
 
@@ -452,7 +465,7 @@ public class TinkerMaterial {
         @Nonnull
         public Builder but() {
             return withId(id)
-                .withTheme(theme)
+                .withColor(color)
                 .withDisplayMaterial(displayMaterial)
                 .withTraitMap(traitMap)
                 .fromTinkerExtension(addedBy)
@@ -477,7 +490,7 @@ public class TinkerMaterial {
         @Nonnull
         public TinkerMaterial build() {
             TinkerMaterial tinkerMaterial = new TinkerMaterial(id);
-            tinkerMaterial.setTheme(theme);
+            tinkerMaterial.setColor(color);
             tinkerMaterial.setDisplayMaterial(displayMaterial);
             tinkerMaterial.setTraitMap(traitMap);
             tinkerMaterial.setAddedBy(addedBy);
