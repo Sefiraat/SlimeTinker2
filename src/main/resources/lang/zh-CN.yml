@@ -1,4 +1,19 @@
 ---
+general:
+  armor_plates: 装甲板
+  armor_gambeson: 盔甲甘布森
+  armor_links: 装甲链接
+  tool_head: 工具头
+  tool_binder: 工具粘合剂
+  tool_rod: 工具杆
+interfaces:
+  group_names:
+    materials: 修补材料词典
+  gui_strings:
+    when_formed_singular: 当形成一个
+    when_formed_plural: 当形成
+    not_compatible: 不兼容
+    not_compatible_desc: 这种材料不能成型。
 materials:
   core_iron:
     name: 铁
