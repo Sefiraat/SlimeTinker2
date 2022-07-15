@@ -1,0 +1,53 @@
+---
+materials:
+  core_iron:
+    name: 铁
+    traits:
+      tool_head:
+        name: 稳定
+        lore:
+        - 有没有……嗯……没什么……
+      tool_rod:
+        name: 夏普我
+        lore:
+        - 增加伤害，可叠加
+        - 模组和其他属性。
+      armor_plates:
+        name: 坚定不移
+        lore:
+        - 33% 几率忽略爆炸
+      armor_links:
+        name: 生锈的
+        lore:
+        - 护甲耐久度损失+10%。玩家经验增加 +10%
+  core_gold:
+    name: 金子
+    traits:
+      tool_head:
+        name: 金色面纱
+        lore:
+        - 使玩家隐形。如果使用
+        - 在武器上，-100% 伤害。
+      tool_rod:
+        name: 所有的闪光
+        lore:
+        - 让你们都闪闪发光...
+      armor_plates:
+        name: 繁荣
+        lore:
+        - 击中时有 1% 几率掉落金块
+      armor_links:
+        name: 物物交换
+        lore:
+        - 猪灵喜欢你的盔甲
+  core_string:
+    name: 细绳
+    traits:
+      tool_binder:
+        name: 它只是工作
+        lore:
+        - 无特殊效果。
+      armor_gambeson:
+        name: 它只是工作
+        lore:
+        - 无特殊效果。
