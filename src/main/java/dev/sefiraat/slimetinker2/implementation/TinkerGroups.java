@@ -1,7 +1,7 @@
 package dev.sefiraat.slimetinker2.implementation;
 
 import dev.sefiraat.slimetinker2.SlimeTinker2;
-import dev.sefiraat.slimetinker2.implementation.groups.TraitsFlexGroup;
+import dev.sefiraat.slimetinker2.implementation.groups.MaterialsFlexGroup;
 import dev.sefiraat.slimetinker2.utils.Keys;
 import io.github.sefiraat.sefilib.itemgroup.MainFlexGroup;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
@@ -22,15 +22,15 @@ public final class TinkerGroups {
         Keys.newKey("main"),
         new CustomItemStack(
             new ItemStack(Material.FLETCHING_TABLE),
-            Themes.MAIN.color("SlimeTinker2")
+            TinkerThemes.MAIN.color("SlimeTinker2")
         )
     );
 
-    public static final TraitsFlexGroup TRAITS = new TraitsFlexGroup(
-        Keys.newKey("traits"),
+    public static final MaterialsFlexGroup MATERIALS = new MaterialsFlexGroup(
+        Keys.newKey("materials"),
         new CustomItemStack(
-            new ItemStack(Material.FIRE_CORAL_FAN),
-            Themes.MAIN.color("Material Traits")
+            new ItemStack(Material.IRON_BLOCK),
+            TinkerThemes.MAIN.color(SlimeTinker2.getLang().getGroupName("materials"))
         )
     );
 
@@ -40,6 +40,6 @@ public final class TinkerGroups {
         // Slimefun Registry
         MAIN.register(plugin);
 
-        MAIN.addItemGroup(TRAITS);
+        MAIN.addItemGroup(MATERIALS);
     }
 }

@@ -3,9 +3,9 @@ package dev.sefiraat.slimetinker2.implementation;
 import io.github.sefiraat.sefilib.string.Theme;
 import net.md_5.bungee.api.ChatColor;
 
-public final class Themes {
+public final class TinkerThemes {
 
-    private Themes() {
+    private TinkerThemes() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -16,5 +16,6 @@ public final class Themes {
     public static final Theme MACHINE = new Theme(ChatColor.of("#3295a8"), "Machine");
     public static final Theme TOOL = new Theme(ChatColor.of("#3295a8"), "Tool");
     public static final Theme TRAIT = new Theme(ChatColor.of("#3295a8"), "Trait");
+    public static final Theme MATERIAL = new Theme(ChatColor.of("#dbcea9"), "Tinker Material");
 
 }

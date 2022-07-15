@@ -4,8 +4,9 @@ import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.api.enums.PartType;
 import dev.sefiraat.slimetinker2.api.friends.EventFriend;
 import dev.sefiraat.slimetinker2.api.textures.AlloyTexture;
-import dev.sefiraat.slimetinker2.implementation.Themes;
+import dev.sefiraat.slimetinker2.implementation.TinkerThemes;
 import io.github.sefiraat.sefilib.string.Theme;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class TinkerMaterial {
     private String id;
     private Theme theme;
+    private Material displayMaterial;
+    private ItemStack displayStack;
     private Map<PartType, TinkerTrait> traitMap;
     private TinkerExtension extension;
     private String sponsor = null;
@@ -54,13 +57,21 @@ public class TinkerMaterial {
             trait.setDisplayStack(
                 Theme.themedItemStack(
                     trait.getDisplayMaterial() == null ? this.extension.getMaterial() : trait.getDisplayMaterial(),
-                    Themes.TRAIT,
+                    TinkerThemes.TRAIT,
                     trait.getTraitName(),
                     trait.getLore().toArray(new String[]{})
                 )
             );
             trait.setTinkerMaterial(this);
         }
+
+        this.displayStack = Theme.themedItemStack(
+            this.displayMaterial,
+            TinkerThemes.MATERIAL,
+            this.theme.apply(this.theme.getLoreLine()),
+            ""
+        );
+
         SlimeTinker2.getRegistry().registerMaterial(this);
         this.registered = true;
         return this;
@@ -96,6 +107,22 @@ public class TinkerMaterial {
 
     public void setTheme(Theme theme) {
         this.theme = theme;
+    }
+
+    public Material getDisplayMaterial() {
+        return displayMaterial;
+    }
+
+    public ItemStack getDisplayStack() {
+        return displayStack;
+    }
+
+    public void setDisplayStack(ItemStack displayStack) {
+        this.displayStack = displayStack;
+    }
+
+    public void setDisplayMaterial(Material displayMaterial) {
+        this.displayMaterial = displayMaterial;
     }
 
     public String getLoreLine(@Nonnull PartType partType) {
@@ -278,6 +305,7 @@ public class TinkerMaterial {
     public static final class Builder {
         private String id;
         private Theme theme;
+        private Material displayMaterial;
         private Map<PartType, TinkerTrait> traitMap = new EnumMap<>(PartType.class);
         private TinkerExtension addedBy;
         private String sponsor = null;
@@ -305,6 +333,11 @@ public class TinkerMaterial {
         @Nonnull
         public Builder withTheme(@Nonnull Theme theme) {
             this.theme = theme;
+            return this;
+        }
+
+        public Builder withDisplayMaterial(@Nonnull Material displayStack) {
+            this.displayMaterial = displayStack;
             return this;
         }
 
@@ -418,7 +451,9 @@ public class TinkerMaterial {
 
         @Nonnull
         public Builder but() {
-            return withId(id).withTheme(theme)
+            return withId(id)
+                .withTheme(theme)
+                .withDisplayMaterial(displayMaterial)
                 .withTraitMap(traitMap)
                 .fromTinkerExtension(addedBy)
                 .sponsoredBy(sponsor)
@@ -443,6 +478,7 @@ public class TinkerMaterial {
         public TinkerMaterial build() {
             TinkerMaterial tinkerMaterial = new TinkerMaterial(id);
             tinkerMaterial.setTheme(theme);
+            tinkerMaterial.setDisplayMaterial(displayMaterial);
             tinkerMaterial.setTraitMap(traitMap);
             tinkerMaterial.setAddedBy(addedBy);
             tinkerMaterial.setSponsor(sponsor);

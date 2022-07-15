@@ -1,6 +1,7 @@
 package dev.sefiraat.slimetinker2;
 
 import dev.sefiraat.slimetinker2.api.TinkerExtension;
+import dev.sefiraat.slimetinker2.api.TinkerLanguage;
 import dev.sefiraat.slimetinker2.implementation.TinkerGroups;
 import dev.sefiraat.slimetinker2.implementation.managers.ConfigManager;
 import dev.sefiraat.slimetinker2.implementation.managers.DispatchManager;
@@ -146,6 +147,10 @@ public class SlimeTinker2 extends JavaPlugin implements SlimefunAddon {
 
     public static TinkerExtension getExtension() {
         return SlimeTinker2.getInstance().extension;
+    }
+
+    public static TinkerLanguage getLang() {
+        return getExtension().getLanguage();
     }
 
 }

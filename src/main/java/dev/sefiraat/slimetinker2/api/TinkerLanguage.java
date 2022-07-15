@@ -78,6 +78,31 @@ public class TinkerLanguage {
         return Objects.requireNonNullElse(string, List.of("Localisation Error"));
     }
 
+    @Nonnull
+    public String getGroupName(@Nonnull String path) {
+        return getString("interfaces.group_names." + path);
+    }
+
+    @Nonnull
+    public String getGeneral(@Nonnull String path) {
+        return getString("general." + path);
+    }
+
+    @Nonnull
+    public List<String> getGeneralList(@Nonnull String path) {
+        return getStringList("general." + path);
+    }
+
+    @Nonnull
+    public String getGuiString(@Nonnull String path) {
+        return getString("interfaces.gui_strings." + path);
+    }
+
+    @Nonnull
+    public List<String> getGuiStringList(@Nonnull String path) {
+        return getStringList("interfaces.gui_strings" + path);
+    }
+
     public TinkerExtension getExtension() {
         return extension;
     }

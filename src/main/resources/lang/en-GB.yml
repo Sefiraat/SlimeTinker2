@@ -1,3 +1,18 @@
+general:
+  armor_plates: "Armor Plates"
+  armor_gambeson: "Armor Gambeson"
+  armor_links: "Armor Links"
+  tool_head: "Tool Head"
+  tool_binder: "Tool Binder"
+  tool_rod: "Tool Rod"
+interfaces:
+  group_names:
+    materials: "Tinker Material Dictionary"
+  gui_strings:
+    when_formed_singular: "When formed into a"
+    when_formed_plural: "When formed into"
+    not_compatible: "Not Compatible"
+    not_compatible_desc: "This material cannot be formed into this."
 materials:
   core_iron:
     name: "Iron"
