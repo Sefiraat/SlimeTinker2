@@ -1,0 +1,53 @@
+---
+materials:
+  core_iron:
+    name: Le fer
+    traits:
+      tool_head:
+        name: La stabilité
+        lore:
+        - Est-ce que... hmm... Rien...
+      tool_rod:
+        name: Sharp je
+        lore:
+        - Inflige des dégâts accrus, se cumule avec
+        - mods et autres propriétés.
+      armor_plates:
+        name: Ferme
+        lore:
+        - 33 % de chances d'ignorer une explosion
+      armor_links:
+        name: Rouillé
+        lore:
+        - Perte de durabilité de l'armure +10 %. Gain d'expérience du joueur +10 %
+  core_gold:
+    name: Or
+    traits:
+      tool_head:
+        name: Voile doré
+        lore:
+        - Rend le joueur invisible. Si utilisé
+        - sur une arme, -100% de dégâts.
+      tool_rod:
+        name: Tout ce qui brille
+        lore:
+        - Vous rend tout brillant...
+      armor_plates:
+        name: Prospère
+        lore:
+        - 1 % de chance de laisser tomber une pépite d'or lorsqu'elle est touchée
+      armor_links:
+        name: Troc
+        lore:
+        - Piglins comme votre armure
+  core_string:
+    name: Chaîne de caractères
+    traits:
+      tool_binder:
+        name: Ça marche
+        lore:
+        - Pas d'effets spéciaux.
+      armor_gambeson:
+        name: Ça marche
+        lore:
+        - Pas d'effets spéciaux.
