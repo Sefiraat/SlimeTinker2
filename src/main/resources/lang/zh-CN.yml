@@ -1,19 +1,19 @@
 ---
 general:
-  armor_plates: 装甲板
-  armor_gambeson: 盔甲甘布森
-  armor_links: 装甲链接
-  tool_head: 工具头
-  tool_binder: 工具粘合剂
-  tool_rod: 工具杆
+  armor_plates: 板
+  armor_gambeson: 护身软甲
+  armor_links: 盔甲接合物
+  tool_head: 头部
+  tool_binder: 绑定结
+  tool_rod: 手柄
 interfaces:
   group_names:
-    materials: 修补材料词典
+    materials: 匠魂材料大全
   gui_strings:
     when_formed_singular: 当形成一个
     when_formed_plural: 当形成
     not_compatible: 不兼容
-    not_compatible_desc: 这种材料不能成型。
+    not_compatible_desc: 该材料无法制成该部件。
 materials:
   core_iron:
     name: 铁
@@ -21,48 +21,48 @@ materials:
       tool_head:
         name: 稳定
         lore:
-        - 有没有……嗯……没什么……
+        - 没有特性!
       tool_rod:
-        name: 夏普我
+        name: 锋利 1
         lore:
-        - 增加伤害，可叠加
-        - 模组和其他属性。
+        - 获得力量效果
+        - "(可叠加)"
       armor_plates:
-        name: 坚定不移
+        name: 坚固
         lore:
-        - 33% 几率忽略爆炸
+        - 有33%的几率免疫爆炸伤害
       armor_links:
-        name: 生锈的
+        name: 腐蚀
         lore:
-        - 护甲耐久度损失+10%。玩家经验增加 +10%
+        - "-10% 输出伤害，+10% 玩家经验获取"
   core_gold:
-    name: 金子
+    name: 金
     traits:
       tool_head:
         name: 金色面纱
         lore:
-        - 使玩家隐形。如果使用
-        - 在武器上，-100% 伤害。
+        - 获得隐身效果
+        - 用于武器时，-100% 输出伤害
       tool_rod:
-        name: 所有的闪光
+        name: 闪闪发光
         lore:
-        - 让你们都闪闪发光...
+        - 获得发光效果
       armor_plates:
         name: 繁荣
         lore:
-        - 击中时有 1% 几率掉落金块
+        - 在受到伤害时，有1%几率掉落1个金粒
       armor_links:
-        name: 物物交换
+        name: 来个交易
         lore:
         - 猪灵喜欢你的盔甲
   core_string:
-    name: 细绳
+    name: 绳子
     traits:
       tool_binder:
-        name: 它只是工作
+        name: 又不是不能用
         lore:
-        - 无特殊效果。
+        - 没有任何效果
       armor_gambeson:
-        name: 它只是工作
+        name: 又不是不能用
         lore:
-        - 无特殊效果。
+        - 没有任何效果
