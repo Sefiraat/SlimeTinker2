@@ -26,6 +26,8 @@ materials:
         lore:
           - "Gives increased damage, stacks with"
           - "mods and other properties."
+      sword_blade:
+        name: ""
       armor_plates:
         name: "Steadfast"
         lore:

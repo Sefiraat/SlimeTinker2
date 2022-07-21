@@ -62,7 +62,7 @@ public class TinkerMaterial {
                     trait.getDisplayMaterial() == null ? this.extension.getMaterial() : trait.getDisplayMaterial(),
                     TinkerThemes.TRAIT,
                     trait.getTraitName(),
-                    trait.getLore().toArray(new String[]{})
+                    trait.getLore()
                 )
             );
             trait.setTinkerMaterial(this);
@@ -74,7 +74,7 @@ public class TinkerMaterial {
             this.displayMaterial,
             TinkerThemes.MATERIAL,
             this.theme.apply(this.theme.getLoreLine()),
-            ""
+            null
         );
 
         SlimeTinker2.getRegistry().registerMaterial(this);

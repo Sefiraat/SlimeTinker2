@@ -9,9 +9,11 @@ import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
 import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.api.enums.ArmorType;
+import dev.sefiraat.slimetinker2.api.enums.SwordType;
 import dev.sefiraat.slimetinker2.api.enums.ToolType;
 import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerArmor;
 import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerItem;
+import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerSword;
 import dev.sefiraat.slimetinker2.api.tinkeritems.TinkerTool;
 import io.github.sefiraat.sefilib.string.Theme;
 import org.bukkit.Material;
@@ -110,6 +112,27 @@ public class TinkerCommands extends BaseCommand {
                     SlimeTinker2.getRegistry().getTinkerMaterial(rodMat)
                 );
                 player.getInventory().addItem(tinkerTool.createItemStack());
+            } else {
+                sender.sendMessage(Theme.ERROR + "This can only be done as a player.");
+            }
+        }
+
+        @Subcommand("Sword")
+        @CommandCompletion("@SWORD_TYPES @SWORD_BLADE_PARTS @SWORD_HILT_PARTS @SWORD_POMMEL_PARTS")
+        @Description("Creates a new SlimeTinker2 sword with the given materials")
+        public void sword(CommandSender sender, String type, String bladeMat, String hiltMat, String rodMat) {
+            if (sender instanceof Player player) {
+                final SwordType toolType = SwordType.valueOf(type);
+                TinkerSword tinkerSword = new TinkerSword(
+                    0,
+                    0,
+                    0,
+                    toolType,
+                    SlimeTinker2.getRegistry().getTinkerMaterial(bladeMat),
+                    SlimeTinker2.getRegistry().getTinkerMaterial(hiltMat),
+                    SlimeTinker2.getRegistry().getTinkerMaterial(rodMat)
+                );
+                player.getInventory().addItem(tinkerSword.createItemStack());
             } else {
                 sender.sendMessage(Theme.ERROR + "This can only be done as a player.");
             }

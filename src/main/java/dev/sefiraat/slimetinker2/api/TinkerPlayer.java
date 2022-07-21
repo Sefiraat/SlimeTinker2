@@ -77,7 +77,9 @@ public class TinkerPlayer {
         }
         final ItemMeta meta = itemStack.getItemMeta();
         final TinkerArmor tinkerArmor = PersistentDataAPI.get(meta, Keys.TINKER_ARMOR, DataTypes.TINKER_ARMOR);
-        tinkerArmor.setItemStack(itemStack);
+        if (tinkerArmor != null) {
+            tinkerArmor.setItemStack(itemStack);
+        }
         return tinkerArmor;
     }
 

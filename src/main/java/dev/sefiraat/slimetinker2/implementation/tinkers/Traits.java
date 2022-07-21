@@ -27,8 +27,22 @@ public final class Traits {
         .build();
 
     public static final TinkerTrait IRON_TOOL_ROD = TinkerTrait.Builder.start()
+        .withMaterial(Material.IRON_HOE)
+        .withBlockBreakEvent(friend -> {
+            if (Chance.testChance(5, 100)) {
+
+            }
+            friend.getEvent().
+        })
+        .build();
+
+    public static final TinkerTrait IRON_SWORD_BLADE = TinkerTrait.Builder.start()
         .withMaterial(Material.IRON_SWORD)
         .withTickEvent(friend -> friend.increasePotionEffect(PotionEffectType.INCREASE_DAMAGE))
+        .build();
+
+    public static final TinkerTrait IRON_SWORD_POMMEL = TinkerTrait.Builder.start()
+        .withMaterial(Material.IRON_INGOT)
         .build();
 
     public static final TinkerTrait IRON_ARMOR_PLATES = TinkerTrait.Builder.start()

@@ -28,43 +28,37 @@ public class TinkerTool extends TinkerItem {
             ToolType.AXE, Material.WOODEN_AXE,
             ToolType.PICKAXE, Material.WOODEN_PICKAXE,
             ToolType.HOE, Material.WOODEN_HOE,
-            ToolType.SHOVEL, Material.WOODEN_SHOVEL,
-            ToolType.SWORD, Material.WOODEN_SWORD
+            ToolType.SHOVEL, Material.WOODEN_SHOVEL
         ),
         3, Map.of(
             ToolType.AXE, Material.STONE_AXE,
             ToolType.PICKAXE, Material.STONE_PICKAXE,
             ToolType.HOE, Material.STONE_HOE,
-            ToolType.SHOVEL, Material.STONE_SHOVEL,
-            ToolType.SWORD, Material.STONE_SWORD
+            ToolType.SHOVEL, Material.STONE_SHOVEL
         ),
         5, Map.of(
             ToolType.AXE, Material.GOLDEN_AXE,
             ToolType.PICKAXE, Material.GOLDEN_PICKAXE,
             ToolType.HOE, Material.GOLDEN_HOE,
-            ToolType.SHOVEL, Material.GOLDEN_SHOVEL,
-            ToolType.SWORD, Material.GOLDEN_SWORD
+            ToolType.SHOVEL, Material.GOLDEN_SHOVEL
         ),
         8, Map.of(
             ToolType.AXE, Material.IRON_AXE,
             ToolType.PICKAXE, Material.IRON_PICKAXE,
             ToolType.HOE, Material.IRON_HOE,
-            ToolType.SHOVEL, Material.IRON_SHOVEL,
-            ToolType.SWORD, Material.IRON_SWORD
+            ToolType.SHOVEL, Material.IRON_SHOVEL
         ),
         15, Map.of(
             ToolType.AXE, Material.DIAMOND_AXE,
             ToolType.PICKAXE, Material.DIAMOND_PICKAXE,
             ToolType.HOE, Material.DIAMOND_HOE,
-            ToolType.SHOVEL, Material.DIAMOND_SHOVEL,
-            ToolType.SWORD, Material.DIAMOND_SWORD
+            ToolType.SHOVEL, Material.DIAMOND_SHOVEL
         ),
         20, Map.of(
             ToolType.AXE, Material.NETHERITE_AXE,
             ToolType.PICKAXE, Material.NETHERITE_PICKAXE,
             ToolType.HOE, Material.NETHERITE_HOE,
-            ToolType.SHOVEL, Material.NETHERITE_SHOVEL,
-            ToolType.SWORD, Material.NETHERITE_SWORD
+            ToolType.SHOVEL, Material.NETHERITE_SHOVEL
         )
     );
 

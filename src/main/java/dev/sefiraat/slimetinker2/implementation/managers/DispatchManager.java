@@ -6,6 +6,7 @@ import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.api.TinkerMaterial;
 import dev.sefiraat.slimetinker2.api.enums.ArmorType;
 import dev.sefiraat.slimetinker2.api.enums.PartType;
+import dev.sefiraat.slimetinker2.api.enums.SwordType;
 import dev.sefiraat.slimetinker2.api.enums.ToolType;
 import dev.sefiraat.slimetinker2.implementation.commands.TinkerCommands;
 import org.bukkit.plugin.Plugin;
@@ -30,6 +31,11 @@ public class DispatchManager extends PaperCommandManager {
         getCommandCompletions().registerCompletion(
             "TOOL_TYPES",
             context -> Arrays.stream(ToolType.values()).map(ToolType::name).collect(Collectors.toSet())
+        );
+
+        getCommandCompletions().registerCompletion(
+            "SWORD_TYPES",
+            context -> Arrays.stream(SwordType.values()).map(SwordType::name).collect(Collectors.toSet())
         );
 
         getCommandCompletions().registerCompletion(
@@ -60,6 +66,33 @@ public class DispatchManager extends PaperCommandManager {
             context -> SlimeTinker2.getRegistry().getMaterials().values()
                 .stream()
                 .filter(tinkerMaterial -> tinkerMaterial.getTraitMap().get(PartType.TOOL_ROD) != null)
+                .map(TinkerMaterial::getId)
+                .collect(Collectors.toSet())
+        );
+
+        getCommandCompletions().registerCompletion(
+            "SWORD_BLADE_PARTS",
+            context -> SlimeTinker2.getRegistry().getMaterials().values()
+                .stream()
+                .filter(tinkerMaterial -> tinkerMaterial.getTraitMap().get(PartType.SWORD_BLADE) != null)
+                .map(TinkerMaterial::getId)
+                .collect(Collectors.toSet())
+        );
+
+        getCommandCompletions().registerCompletion(
+            "SWORD_HILT_PARTS",
+            context -> SlimeTinker2.getRegistry().getMaterials().values()
+                .stream()
+                .filter(tinkerMaterial -> tinkerMaterial.getTraitMap().get(PartType.SWORD_HILT) != null)
+                .map(TinkerMaterial::getId)
+                .collect(Collectors.toSet())
+        );
+
+        getCommandCompletions().registerCompletion(
+            "SWORD_POMMEL_PARTS",
+            context -> SlimeTinker2.getRegistry().getMaterials().values()
+                .stream()
+                .filter(tinkerMaterial -> tinkerMaterial.getTraitMap().get(PartType.SWORD_POMMEL) != null)
                 .map(TinkerMaterial::getId)
                 .collect(Collectors.toSet())
         );

@@ -4,11 +4,8 @@ import io.github.sefiraat.sefilib.string.TextUtils;
 
 import javax.annotation.Nonnull;
 
-public enum ToolType {
-    HOE,
-    SHOVEL,
-    PICKAXE,
-    AXE;
+public enum SwordType {
+    SWORD;
 
     @Nonnull
     public String getName() {

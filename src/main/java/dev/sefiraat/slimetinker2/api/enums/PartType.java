@@ -6,6 +6,9 @@ public enum PartType {
     TOOL_HEAD("Head"),
     TOOL_BINDER("Binder"),
     TOOL_ROD("Rod"),
+    SWORD_BLADE("Blade"),
+    SWORD_HILT("Hilt"),
+    SWORD_POMMEL("Pommel"),
     ARMOR_PLATES("Plates"),
     ARMOR_GAMBESON("Gambeson"),
     ARMOR_LINKS("Mail Links");

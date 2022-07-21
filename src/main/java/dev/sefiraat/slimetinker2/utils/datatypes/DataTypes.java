@@ -7,6 +7,7 @@ public final class DataTypes {
     }
 
     public static final TinkerToolDataType TINKER_TOOL = new TinkerToolDataType();
+    public static final TinkerSwordDataType TINKER_SWORD = new TinkerSwordDataType();
     public static final TinkerArmorDataType TINKER_ARMOR = new TinkerArmorDataType();
 
 }
