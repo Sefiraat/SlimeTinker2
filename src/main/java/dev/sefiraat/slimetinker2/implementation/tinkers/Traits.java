@@ -1,8 +1,8 @@
 package dev.sefiraat.slimetinker2.implementation.tinkers;
 
+import dev.sefiraat.sefilib.misc.Chance;
 import dev.sefiraat.slimetinker2.api.TinkerTrait;
 import dev.sefiraat.slimetinker2.utils.Keys;
-import io.github.sefiraat.sefilib.misc.Chance;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -32,7 +32,6 @@ public final class Traits {
             if (Chance.testChance(5, 100)) {
 
             }
-            friend.getEvent().
         })
         .build();
 

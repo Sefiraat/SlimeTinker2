@@ -116,11 +116,6 @@
             <id>aikar</id>
             <url>https://repo.aikar.co/content/groups/aikar/</url>
         </repository>
-        <repository>
-            <id>central</id>
-            <name>sefi-central</name>
-            <url>https://sefiraat.jfrog.io/artifactory/default-maven-local</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -162,9 +157,9 @@
             <version>0.5.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>io.github.sefiraat</groupId>
+            <groupId>dev.sefiraat</groupId>
             <artifactId>SefiLib</artifactId>
-            <version>0.1.2.7</version>
+            <version>0.1.4.1</version>
             <scope>compile</scope>
         </dependency>
 

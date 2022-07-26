@@ -1,5 +1,6 @@
 package dev.sefiraat.slimetinker2.implementation.groups;
 
+import dev.sefiraat.sefilib.string.Theme;
 import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.api.TinkerMaterial;
 import dev.sefiraat.slimetinker2.api.TinkerTrait;
@@ -7,7 +8,6 @@ import dev.sefiraat.slimetinker2.api.enums.PartType;
 import dev.sefiraat.slimetinker2.implementation.TinkerGroups;
 import dev.sefiraat.slimetinker2.implementation.TinkerThemes;
 import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.sefiraat.sefilib.string.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.FlexItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;

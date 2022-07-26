@@ -1,5 +1,6 @@
 package dev.sefiraat.slimetinker2.api.tinkeritems;
 
+import dev.sefiraat.sefilib.string.Theme;
 import dev.sefiraat.slimetinker2.api.TinkerMaterial;
 import dev.sefiraat.slimetinker2.api.enums.ArmorType;
 import dev.sefiraat.slimetinker2.api.enums.PartType;
@@ -9,7 +10,6 @@ import dev.sefiraat.slimetinker2.utils.Experience;
 import dev.sefiraat.slimetinker2.utils.Keys;
 import dev.sefiraat.slimetinker2.utils.datatypes.DataTypes;
 import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
-import io.github.sefiraat.sefilib.string.Theme;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

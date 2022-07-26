@@ -1,11 +1,11 @@
 package dev.sefiraat.slimetinker2.api;
 
+import dev.sefiraat.sefilib.string.Theme;
 import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.api.enums.PartType;
 import dev.sefiraat.slimetinker2.api.friends.EventFriend;
 import dev.sefiraat.slimetinker2.api.textures.AlloyTexture;
 import dev.sefiraat.slimetinker2.implementation.TinkerThemes;
-import io.github.sefiraat.sefilib.string.Theme;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

@@ -1,6 +1,6 @@
 package dev.sefiraat.slimetinker2.implementation;
 
-import io.github.sefiraat.sefilib.string.Theme;
+import dev.sefiraat.sefilib.string.Theme;
 import net.md_5.bungee.api.ChatColor;
 
 public final class TinkerThemes {
@@ -15,7 +15,10 @@ public final class TinkerThemes {
     public static final Theme RECIPE_TYPE = new Theme(ChatColor.of("#ffe89c"), "Recipe Type");
     public static final Theme MACHINE = new Theme(ChatColor.of("#3295a8"), "Machine");
     public static final Theme TOOL = new Theme(ChatColor.of("#3295a8"), "Tool");
+    public static final Theme PART = new Theme(ChatColor.of("#dbcea9"), "Part");
     public static final Theme TRAIT = new Theme(ChatColor.of("#3295a8"), "Trait");
-    public static final Theme MATERIAL = new Theme(ChatColor.of("#dbcea9"), "Tinker Material");
-
+    public static final Theme MATERIAL = new Theme(ChatColor.of("#dbcea9"), "Material");
+    public static final Theme ENCHANTMENT = new Theme(ChatColor.of("#ffe89c"), "Enchantment");
+    public static final Theme UPGRADE = new Theme(ChatColor.of("#ea201a"), "Upgrade");
+    public static final Theme ADDON = new Theme(ChatColor.of("#8a0e0e"), "Addon");
 }

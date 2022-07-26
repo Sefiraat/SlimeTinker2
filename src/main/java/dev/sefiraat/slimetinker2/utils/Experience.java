@@ -1,6 +1,6 @@
 package dev.sefiraat.slimetinker2.utils;
 
-import io.github.sefiraat.sefilib.string.Theme;
+import dev.sefiraat.sefilib.string.Theme;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;

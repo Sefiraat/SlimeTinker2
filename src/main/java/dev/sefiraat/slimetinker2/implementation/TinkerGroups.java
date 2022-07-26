@@ -1,9 +1,10 @@
 package dev.sefiraat.slimetinker2.implementation;
 
+import dev.sefiraat.sefilib.slimefun.itemgroup.DummyItemGroup;
+import dev.sefiraat.sefilib.slimefun.itemgroup.MainFlexGroup;
 import dev.sefiraat.slimetinker2.SlimeTinker2;
 import dev.sefiraat.slimetinker2.implementation.groups.MaterialsFlexGroup;
 import dev.sefiraat.slimetinker2.utils.Keys;
-import io.github.sefiraat.sefilib.itemgroup.MainFlexGroup;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -34,6 +35,14 @@ public final class TinkerGroups {
         )
     );
 
+    public static final DummyItemGroup TOOLS = new DummyItemGroup(
+        Keys.newKey("tools"),
+        new CustomItemStack(
+            new ItemStack(Material.STONECUTTER),
+            TinkerThemes.MAIN.color(SlimeTinker2.getLang().getGroupName("tools"))
+        )
+    );
+
     public static void setup() {
         final SlimeTinker2 plugin = SlimeTinker2.getInstance();
 
@@ -41,5 +50,6 @@ public final class TinkerGroups {
         MAIN.register(plugin);
 
         MAIN.addItemGroup(MATERIALS);
+        MAIN.addItemGroup(TOOLS);
     }
 }
